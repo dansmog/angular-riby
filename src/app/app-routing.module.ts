@@ -4,7 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { DiscoveryComponent } from './discovery/discovery.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
-import { PortfolioComponent } from './portfolio/portfolio.component'
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { CorporativesComponent } from './Corporatives/corporatives/corporatives.component'
+import { CorporativeComponent } from './Corporatives/corporative/corporative.component'
+import { LoansComponent } from './Loans/loans/loans.component';
+import { LoanComponent } from './Loans/loan/loan.component';
+import { InvestmentsComponent } from './Investments/investments/investments.component';
+import { InvestmentComponent } from './Investments/investment/investment.component';
 
 
 const routes: Routes = [
@@ -19,7 +25,40 @@ const routes: Routes = [
   },
   {
     path: 'portfolio', component: PortfolioComponent
-  }
+  },
+  {
+    path: 'corporatives',
+    children: [
+      {
+        path: '', component: CorporativesComponent
+      },
+      {
+        path: ':id', component: CorporativeComponent,
+      }
+    ]
+  },
+  {
+    path: 'loans',
+    children: [
+      {
+        path: '', component: LoansComponent
+      },
+      {
+        path: ':id', component: LoanComponent,
+      }
+    ]
+  },
+  {
+    path: 'investments',
+    children: [
+      {
+        path: '', component: InvestmentsComponent
+      },
+      {
+        path: ':id', component: InvestmentComponent,
+      }
+    ]
+  },
 ];
 
 @NgModule({

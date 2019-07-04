@@ -8,6 +8,12 @@ import { DiscoveryComponent } from './discovery/discovery.component';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LoansComponent } from './Loans/loans/loans.component';
+import { LoanComponent } from './Loans/loan/loan.component';
+import { InvestmentsComponent } from './Investments/investments/investments.component';
+import { InvestmentComponent } from './Investments/investment/investment.component';
+import { CorporativesComponent } from './Corporatives/corporatives/corporatives.component'
+import { CorporativeComponent } from './Corporatives/corporative/corporative.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +23,12 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     AuthModalComponent,
     BookmarksComponent,
     PortfolioComponent,
+    LoansComponent,
+    LoanComponent,
+    InvestmentsComponent,
+    InvestmentComponent,
+    CorporativesComponent,
+    CorporativeComponent
   ],
   imports: [
     BrowserModule,
