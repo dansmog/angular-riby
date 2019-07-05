@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth-modal.component.css']
 })
 export class AuthModalComponent implements OnInit {
+  isAuthModalVisible: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  showModal = () => {
+    this.isAuthModalVisible = true;
+  }
+
+  closeModal = () => {
+    this.isAuthModalVisible = false;
+  }
 }

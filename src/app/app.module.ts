@@ -13,7 +13,11 @@ import { LoanComponent } from './Loans/loan/loan.component';
 import { InvestmentsComponent } from './Investments/investments/investments.component';
 import { InvestmentComponent } from './Investments/investment/investment.component';
 import { CorporativesComponent } from './Corporatives/corporatives/corporatives.component'
-import { CorporativeComponent } from './Corporatives/corporative/corporative.component'
+import { CorporativeComponent } from './Corporatives/corporative/corporative.component';
+import { Error404Component } from './error404/error404.component'
+
+import { HttpClientModule } from '@angular/common/http';
+import { RestApiService } from './shared/rest-api.service';
 
 @NgModule({
   declarations: [
@@ -28,13 +32,15 @@ import { CorporativeComponent } from './Corporatives/corporative/corporative.com
     InvestmentsComponent,
     InvestmentComponent,
     CorporativesComponent,
-    CorporativeComponent
+    CorporativeComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RestApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

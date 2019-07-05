@@ -11,6 +11,7 @@ import { LoansComponent } from './Loans/loans/loans.component';
 import { LoanComponent } from './Loans/loan/loan.component';
 import { InvestmentsComponent } from './Investments/investments/investments.component';
 import { InvestmentComponent } from './Investments/investment/investment.component';
+import {  Error404Component } from './error404/error404.component'
 
 
 const routes: Routes = [
@@ -59,6 +60,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: '**', component: Error404Component }
 ];
 
 @NgModule({
