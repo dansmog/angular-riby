@@ -7,14 +7,29 @@ import { RestApiService } from '../../shared/rest-api.service';
   styleUrls: ['./corporatives.component.css']
 })
 export class CorporativesComponent implements OnInit { 
-  corporatives: [] = [];
+  corporatives  = [
+    {
+      id: 1111,
+      name: 'Coper Corporative',
+      interest: '7',
+      duration: '2-3 months',
+      repayment: 'up to 6 months',
+    },
+    {
+      id: 1141,
+      name: 'Ibekun Corporative',
+      interest: '8',
+      duration: '2-4 months',
+      repayment: 'up to 7 months',
+    }
+  ];
   isAuthModalVisible: boolean = false;
 
   constructor(private rest: RestApiService) { }
 
   ngOnInit() {
     this.rest.getCorporatives().subscribe(data => {
-      this.corporatives = data;
+      // this.corporatives = data;
     })
   }
 

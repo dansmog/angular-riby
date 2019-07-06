@@ -16,7 +16,7 @@ export class RestApiService {
 
   // HttpClient API get() method => Fetch corporatives list
   getCorporatives(): Observable<any> {
-    return this.http.get<any>('https://jsonplaceholder.typicode.com/comments');
+    return this.http.get<any>('https://testapis.riby.ng/rcb/cm/v1/contribution');
   }
 
   getLoans(): Observable<any> {

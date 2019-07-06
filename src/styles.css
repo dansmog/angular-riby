@@ -224,6 +224,7 @@ header {
 .discovery-container {
   background-color: #f1f2f6;
   padding: 60px 0;
+  min-height: 100Vh;
 }
 .discovery-single {
   background-color: #f1f2f6;
