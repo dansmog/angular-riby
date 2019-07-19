@@ -33,13 +33,13 @@ export class RestApiService {
   getById(id: number, type: string): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
     if (type === 'investments') {
-      return this.http.get<any>(`https://apis.riby.ng/rcb/cm/v1/contribution-type/${id}`, { headers });
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/cm/v1/contribution-type/${id}`, { headers });
     }
     if (type === 'loans') {
-      return this.http.get<any>(`https://apis.riby.ng/rcb/lm/v1/loan/${id}`, { headers });
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/lm/v1/loan-type/${id}`, { headers });
     }
     if (type === 'corporatives') {
-      return this.http.get<any>(`https://apis.riby.ng/rcb/cm/v1/contribution-type/${id}`, { headers });
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/cm/v1/cooperatives/${id}`, { headers });
     }
   }
 }
