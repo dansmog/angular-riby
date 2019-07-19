@@ -22,14 +22,18 @@ export class CorporativesComponent implements OnInit {
       duration: '2-4 months',
       repayment: 'up to 7 months',
     }
+
   ];
+  total: number = 0;
   isAuthModalVisible: boolean = false;
 
   constructor(private rest: RestApiService) { }
 
   ngOnInit() {
     this.rest.getCorporatives().subscribe(data => {
-      // this.corporatives = data;
+      console.log(data.payload)
+      this.corporatives = data.payload.cooperatives;      
+      this.total = data.payload.total;
     })
   }
 

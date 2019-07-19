@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
   selector: 'app-investments',
@@ -57,9 +58,12 @@ export class InvestmentsComponent implements OnInit {
     //   type: 'animals'
     // }
   ];
-  constructor() { }
+  constructor( private rest: RestApiService) { }
 
   ngOnInit() {
+    this.rest.getInvestments().subscribe(data => {
+      console.log(data)
+    })
   }
 
 }
