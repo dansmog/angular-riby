@@ -18,6 +18,7 @@ import { Error404Component } from './error404/error404.component'
 
 import { HttpClientModule } from '@angular/common/http';
 import { RestApiService } from './shared/rest-api.service';
+import { ModalService } from './shared/modal.service';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,9 @@ import { RestApiService } from './shared/rest-api.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [RestApiService],
+  providers: [RestApiService, ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

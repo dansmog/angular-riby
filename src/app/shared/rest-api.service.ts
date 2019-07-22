@@ -29,6 +29,7 @@ export class RestApiService {
     let headers = new HttpHeaders().set('Authorization', "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a")
     return this.http.get<any>('https://testapis.riby.ng/rcb/cp/v1/cooperative', { headers })
   }
+  
   //get a single loans, corporatives or investment by id
   getById(id: number, type: string): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
@@ -38,8 +39,14 @@ export class RestApiService {
     if (type === 'loans') {
       return this.http.get<any>(`https://testapis.riby.ng/rcb/lm/v1/loan-type/${id}`, { headers });
     }
-    if (type === 'corporatives') {
-      return this.http.get<any>(`https://testapis.riby.ng/rcb/cm/v1/cooperatives/${id}`, { headers });
+    if (type === 'cooporatives') {
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/cp/v1/cooperative/${id}`, { headers });
     }
+  }
+
+  //perform member join request to a cooperative
+  postMemberRequest(user): Observable<any> {
+    let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
+    return this.http.post<any>('https://testapis.riby.ng/rcb/cp/v1/member-join-request', user, { headers })
   }
 }

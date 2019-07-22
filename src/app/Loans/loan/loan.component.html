@@ -61,8 +61,8 @@
           <div class="row">
             <div class="col-sm-12 d-flex justify-content-between">
               <div class="dcy-breadcrumb">
-                <a routerLink="/discovery">Discover</a>
-                <a routerLink="/corporatives">Car Loans</a>
+                <a routerLink="/loans">Back to Loans</a>
+                <a routerLink="/corporatives">{{loan.name}}</a>
               </div>
             </div>
           </div>
@@ -79,14 +79,7 @@
                           </div>
                           <div class="col-sm-9">
                             <p>
-                              Nigeria spends in excess of 900 Million Naira on
-                              imported frozen meat annually even though we have
-                              the capacity to rear more cattle and divert that
-                              spend to growing our economy. Presently, an
-                              estimated population of 200 million live in Nigeria
-                              with beef consumption amounting to 380,000 tonnes in
-                              2014. This is projected to grow up to 1.3 million
-                              tonnes by 2050. We have expanded our
+                              {{loan.description}}
                             </p>
                             <span>Read more...</span>
                           </div>
@@ -214,7 +207,7 @@
                     You’ll have to sign up with the cooperative to access this
                     savings plan.
                   </p>
-                  <a routerLink="/register">Sign me up</a>
+                  <a (click)="showModal()">Sign me up</a>
                 </div>
               </div>
             </div>
@@ -410,3 +403,58 @@
       </section>
     </section>
   
+    <div class="modal-overlay" *ngIf="isModalVisible" (click)="closeModal()">
+      <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <div class="auth-modal-content">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="auth-modal-content-images d-flex justify-content-center align-items-center">
+                    <img
+                      src="images/Mask Group.png"
+                      alt=""
+                      class="img-responsive"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="ready-state">
+                    <h4>
+                      Fill the form below to create your Discovery account
+                    </h4>
+                    <form>
+                      <div class="form-group">
+                        <input type="text" placeholder="First name" />
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="Last name" />
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="Phone number" />
+                      </div>
+                      <div class="form-group">
+                        <input type="email" placeholder="Email Address" />
+                      </div>
+                      <div class="form-group">
+                        <input type="password" placeholder="Password" />
+                      </div>
+                      <div class="form-group">
+                        <input type="password" placeholder="Confirm password" />
+                      </div>
+                    </form>
+                    <a href="discover.html" class="btn btn__red modal_btn"
+                      >Sign me up</a
+                    >
+                    <span>
+                      Already have an account?
+                      <a href="login.html">Log in</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
