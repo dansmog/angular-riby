@@ -15,19 +15,19 @@ export class RestApiService {
   constructor(private http: HttpClient) { }
 
   // HttpClient API get() method => Fetch corporatives list
-  getInvestments(): Observable<any> {
+  getInvestments(limit, page): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a")
-    return this.http.get<any>('https://testapis.riby.ng/rcb/cm/v1/contribution-type', { headers });
+    return this.http.get<any>(`https://testapis.riby.ng/rcb/cm/v1/contribution-type?limit=${limit}&page=${page}`, { headers });
   }
 
-  getLoans(): Observable<any> {
+  getLoans(limit, page): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a")
-    return this.http.get<any>('https://testapis.riby.ng/rcb/lm/v1/loan-type', { headers })
+    return this.http.get<any>(`https://testapis.riby.ng/rcb/lm/v1/loan-type?limit=${limit}&page=${page}`, { headers })
   }
 
-  getCorporatives(): Observable<any> {
+  getCorporatives(limit, page): Observable<any> {
     let headers = new HttpHeaders().set('Authorization', "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a")
-    return this.http.get<any>('https://testapis.riby.ng/rcb/cp/v1/cooperative', { headers })
+    return this.http.get<any>(`https://testapis.riby.ng/rcb/cp/v1/cooperative?limit=${limit}&page=${page}`, { headers })
   }
   
   //get a single loans, corporatives or investment by id
@@ -49,4 +49,11 @@ export class RestApiService {
     let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
     return this.http.post<any>('https://testapis.riby.ng/rcb/cp/v1/member-join-request', user, { headers })
   }
+
+  applicationRequest(): Observable<any>{
+    let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
+    return this.http.post<any>('https://testapis.riby.ng/rcb/cp/v1/member-join-request', { headers })
+  }
+
+
 }

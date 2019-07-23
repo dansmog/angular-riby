@@ -1,16 +1,16 @@
-
-  <section>
+<section>
+  <ngx-spinner></ngx-spinner>
     <header>
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="header-container d-flex justify-content-between">
+          <div class="col-sm-12 ">
+            <div class="header-container d-flex justify-content-center align-items-center">
               <div class="header-logo">
                 <a routerLink="/discovery">
                   <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
                 </a>
               </div>
-              <div class="header-menu d-flex">
+              <!-- <div class="header-menu d-flex">
                 <a routerLink="/discovery" class="active">Discover</a>
                 <a routerLink="/bookmarks">Bookmarks</a>
                 <a routerLink="/portfolio">Portfolio</a>
@@ -50,19 +50,19 @@
                     <path d="M0 0L4 4L8 0H0Z" fill="#0B213C" />
                   </svg>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </header>
-    <section class="discovery-single">
+    <section class="discovery-single"  *ngIf="!isLoading">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 d-flex justify-content-between">
             <div class="dcy-breadcrumb">
-              <a routerLink="/discovery">Discover</a>
-              <a routerLink="/corporatives">{{cooperative.name}}</a>
+              <a routerLink="/corporatives">Discover</a>
+              <a routerLink="/corporative">{{cooperative.name}}</a>
             </div>
           </div>
         </div>
@@ -78,15 +78,8 @@
                           <h5>About Corporative</h5>
                         </div>
                         <div class="col-sm-9">
-                          <p>
-                            Nigeria spends in excess of 900 Million Naira on
-                            imported frozen meat annually even though we have
-                            the capacity to rear more cattle and divert that
-                            spend to growing our economy. Presently, an
-                            estimated population of 200 million live in Nigeria
-                            with beef consumption amounting to 380,000 tonnes in
-                            2014. This is projected to grow up to 1.3 million
-                            tonnes by 2050. We have expanded our
+                          <p *ngIf="cooperative.description">
+                           {{cooperative.description}}
                           </p>
                           <span>Read more...</span>
                         </div>

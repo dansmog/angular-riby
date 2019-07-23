@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
+
+
 import { RestApiService } from '../../shared/rest-api.service';
 
 @Component({
@@ -7,42 +10,47 @@ import { RestApiService } from '../../shared/rest-api.service';
   styleUrls: ['./corporatives.component.css']
 })
 export class CorporativesComponent implements OnInit { 
-  corporatives  = [
-    {
-      id: 1111,
-      name: 'Coper Corporative',
-      interest: '7',
-      duration: '2-3 months',
-      repayment: 'up to 6 months',
-    },
-    {
-      id: 1141,
-      name: 'Ibekun Corporative',
-      interest: '8',
-      duration: '2-4 months',
-      repayment: 'up to 7 months',
-    }
-
-  ];
+  corporatives  = [];
   total: number = 0;
+  currentPage = 1;
   isAuthModalVisible: boolean = false;
+  isLoading: boolean = true;
 
-  constructor(private rest: RestApiService) { }
+  constructor(private rest: RestApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.rest.getCorporatives().subscribe(data => {
-      console.log(data.payload)
+   this.fetchCooporatives(this.currentPage)
+  }
+
+
+  fetchCooporatives(page){
+    this.spinner.show();
+    this.rest.getCorporatives(10, page).subscribe(data => {
+      this.spinner.hide();
+      this.isLoading = false;
       this.corporatives = data.payload.cooperatives;      
       this.total = data.payload.total;
     })
   }
 
-  // showModal = () => {
-  //   this.isAuthModalVisible = true;
-  // }
+  nextPage(){
+    this.currentPage += 1
+    if(this.currentPage >= this.total){
+      this.currentPage = this.total
+      this.fetchCooporatives(this.currentPage);
+    }else{
+      this.fetchCooporatives(this.currentPage);
+    }
+  }
 
-  // closeModal = () => {
-  //   this.isAuthModalVisible = false;
-  // }
+  prevPage(){
+    if(this.currentPage === 1){
+      this.currentPage = 1
+     return;
+    }else{
+      this.currentPage -= 1
+      this.fetchCooporatives(this.currentPage);
+    }
+  }
 
 }

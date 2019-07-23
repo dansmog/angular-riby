@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -11,21 +12,30 @@ import { RestApiService } from '../../shared/rest-api.service';
 })
 export class InvestmentComponent implements OnInit {
 
-  id: any;
+  id: any = null;
+  investment = {}
   paramsSub: any;
+  isLoading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private rest: RestApiService) { }
+  constructor(private route: ActivatedRoute, private rest: RestApiService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    // this.paramsSub = this.activatedRoute.params.subscribe(params => this.id = parseInt(params['id'], 10));
-    // console.log(this.paramsSub);
-    // console.log(this.activatedRoute.params.subscribe(params => this.id = parseInt(params['id'], 10)));
+    this.getSingleId();
+    this.fetchInvestmentById()
+  }
 
+  getSingleId() {
     this.route.params.subscribe(params => {
-      console.log(params.id)
-      this.rest.getById(params.id, 'investments').subscribe(data => {
-        console.log(data)
-      })
+      this.id = params.id;
+    })
+  }
+
+  fetchInvestmentById() {
+    this.spinner.show()
+    this.rest.getById(this.id, 'investments').subscribe(data => {
+      console.log(data.payload);
+      this.investment = data.payload;
+      this.spinner.hide();
     })
   }
 

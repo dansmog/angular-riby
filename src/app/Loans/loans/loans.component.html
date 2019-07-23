@@ -1,16 +1,18 @@
 <section>
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="header-container d-flex justify-content-between">
+  <header>
+      <ngx-spinner></ngx-spinner>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 ">
+          <div class="header-container d-flex justify-content-center align-items-center">
             <div class="header-logo">
               <a routerLink="/discovery">
                 <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
               </a>
             </div>
-            <div class="header-menu d-flex">
+            <!-- <div class="header-menu d-flex">
               <a routerLink="/discovery" class="active">Discover</a>
-              <a routerLink="/bookmarks">Bookmarked</a>
+              <a routerLink="/bookmarks">Bookmarks</a>
               <a routerLink="/portfolio">Portfolio</a>
             </div>
             <div class="header-user">
@@ -48,12 +50,13 @@
                   <path d="M0 0L4 4L8 0H0Z" fill="#0B213C" />
                 </svg>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
-    </header>
-    <section class="discovery-container">
+    </div>
+  </header>
+    <section class="discovery-container" *ngIf="!isLoading">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 d-flex justify-content-between">
@@ -82,7 +85,7 @@
                     <div class="savings-card">
                       <h6>{{loan.name}}</h6>
                       <div class="name-title">
-                        <span class="name-logo">FI</span>
+                        <span class="name-logo">{{loan.name.split(' ')}}</span>
                         <span class="name">{{loan.corporative}}</span>
                       </div>
                     </div>

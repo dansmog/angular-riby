@@ -1,14 +1,18 @@
 <section>
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="header-container d-flex justify-content-between">
+  <header>
+      <ngx-spinner loadingText="Loading Please wait"></ngx-spinner>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 ">
+          <div class="header-container d-flex justify-content-center align-items-center">
             <div class="header-logo">
-              <img src="../../assets/images/riby-logo.png" alt="riby logo" />
+              <a routerLink="/discovery">
+                <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
+              </a>
             </div>
-            <div class="header-menu d-flex">
+            <!-- <div class="header-menu d-flex">
               <a routerLink="/discovery" class="active">Discover</a>
-              <a routerLink="/bookmarks">Bookmarked</a>
+              <a routerLink="/bookmarks">Bookmarks</a>
               <a routerLink="/portfolio">Portfolio</a>
             </div>
             <div class="header-user">
@@ -46,18 +50,19 @@
                   <path d="M0 0L4 4L8 0H0Z" fill="#0B213C" />
                 </svg>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
     <section class="discovery-container">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 d-flex justify-content-between">
             <div class="dcy-util-header">
               <h4 class="dcy-util-text">
-                Investments <span class="dcy-util-text__light">({{total}})</span>
+                Investments <span class="dcy-util-text__light">page {{currentPage}} of ({{total}})</span>
               </h4>
             </div>
             <div class="dcy-sort">
@@ -68,7 +73,7 @@
             </div>
           </div>
         </div>
-        <div class="discovery-content">
+        <div class="discovery-content" *ngIf="!isLoading">
           <div class="row">
             <div class="col-sm-3" *ngFor="let investment of investments">
               <a [routerLink]="['/investments', investment.id]">
@@ -149,7 +154,7 @@
               class="col-sm-12 d-flex align-items-center justify-content-center"
             >
               <div class="pagination-bar">
-                <button class="pagination-bar__back pagination-bar-btn">
+                <button class="pagination-bar__back pagination-bar-btn" (click)="prevPage()">
                   <img src="../assets/images/arrow-back.png" alt="" />
                 </button>
                 <div
@@ -157,11 +162,11 @@
                 >
                   <span>Page</span>
                   <div class="page-counter">
-                    1
+                    {{currentPage}}
                   </div>
-                  <span>of 13</span>
+                  <span>of {{total}}</span>
                 </div>
-                <button class="pagination-bar__forward pagination-bar-btn">
+                <button class="pagination-bar__forward pagination-bar-btn" (click)="nextPage()">
                   <img src="../assets/images/arrow-forward.png" alt="" />
                 </button>
               </div>
@@ -173,4 +178,3 @@
   </section>
   
   <router-outlet></router-outlet>
-  

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import  { ActivatedRoute } from '@angular/router'
+import { NgxSpinnerService } from "ngx-spinner";
 
 import { RestApiService } from '../../shared/rest-api.service';
 
@@ -16,20 +17,44 @@ export class CorporativeComponent implements OnInit {
   isModalVisible: boolean = false;
   cooperative_id = null;
   user = {dob: null};
+  isLoading: boolean = true;
   
-  public constructor(private route: ActivatedRoute, private rest: RestApiService) {
+  public constructor(private route: ActivatedRoute, private rest: RestApiService, private spinner: NgxSpinnerService) {
    }
 
   ngOnInit() {
+    // this.spinner.show();
+
+    // this.route.params.subscribe(params => {
+    //   this.id = params.id;
+    //   this.rest.getById(params.id, 'cooporatives').subscribe(data => {
+    //     console.log(data)
+    //     this.spinner.hide()
+    //     this.cooperative = data.payload
+    //     this.cooperative_id = data.payload.id;
+    //   })
+    // })
+
+    // console.log(this.id);
+    this.getSingleId()
+    this.fetchCooperativeById()
+  }
+
+  
+  getSingleId() {
     this.route.params.subscribe(params => {
       this.id = params.id;
-      this.rest.getById(params.id, 'cooporatives').subscribe(data => {
-        console.log(data)
-        this.cooperative = data.payload
-        this.cooperative_id = data.payload.id;
-      })
     })
-    console.log(this.id);
+  }
+
+  fetchCooperativeById() {
+    this.spinner.show()
+    this.rest.getById(this.id, 'cooporatives').subscribe(data => {
+      this.cooperative = data.payload;
+      console.log(this.cooperative)
+      this.spinner.hide();
+      this.isLoading = false;
+    })
   }
 
   showModal(){

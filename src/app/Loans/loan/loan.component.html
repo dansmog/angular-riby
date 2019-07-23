@@ -1,16 +1,17 @@
 
   <section>
     <header>
+        <ngx-spinner loadingText="Loading Please wait"></ngx-spinner>
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="header-container d-flex justify-content-between">
+          <div class="col-sm-12 ">
+            <div class="header-container d-flex justify-content-center align-items-center">
               <div class="header-logo">
                 <a routerLink="/discovery">
                   <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
                 </a>
               </div>
-              <div class="header-menu d-flex">
+              <!-- <div class="header-menu d-flex">
                 <a routerLink="/discovery" class="active">Discover</a>
                 <a routerLink="/bookmarks">Bookmarks</a>
                 <a routerLink="/portfolio">Portfolio</a>
@@ -50,13 +51,13 @@
                     <path d="M0 0L4 4L8 0H0Z" fill="#0B213C" />
                   </svg>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </header>
-    <section class="discovery-single">
+    <section class="discovery-single" *ngIf="!isLoading">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 d-flex justify-content-between">
