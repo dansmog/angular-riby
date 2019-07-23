@@ -1,0 +1,75 @@
+/** the responsive styles or each pages resides in their component css files **/
+
+@media (max-width: 768px) {
+  .button {
+    margin-left: 28px;
+    margin-top: 25px;
+  }
+  .masthead .title {
+    font-size: 34px;
+  }
+  .about-discovery__details p {
+    font-size: 14px;
+  }
+  .about-discovery__card {
+    padding: 0;
+  }
+}
+@media (max-width: 488px) {
+  .masthead {
+    margin-bottom: 50px;
+  }
+  .masthead .title {
+    font-size: 30px;
+    width: 100%;
+  }
+  .masthead .subtitle {
+    font-size: 14px;
+    line-height: 26px;
+    margin-top: 0px;
+  }
+  .about-discovery {
+    background-color: #fff;
+    margin-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .button {
+    margin-left: 0px;
+    padding: 14px 0;
+    width: 100%;
+    font-size: 14px;
+  }
+  .mg_top-lg {
+    top: 10px;
+  }
+  .about-discovery__card {
+    padding: 0;
+  }
+  .about-discovery__details h4 {
+    font-size: 20px;
+  }
+
+  .about-discovery__details p {
+    font-size: 15px;
+  }
+  .about-discovery__action a {
+    width: 100%;
+  }
+  .about-discovery__action a:after {
+    width: 261px;
+  }
+}
+
+@media (max-width: 320px) {
+  .masthead .title {
+    font-size: 24px;
+    width: 100%;
+  }
+  .masthead .subtitle {
+    font-size: 12px;
+  }
+  .button {
+    margin-top: 0;
+  }
+}

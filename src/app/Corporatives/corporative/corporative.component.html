@@ -214,7 +214,7 @@
                   You’ll have to sign up with the cooperative to access this
                   savings plan.
                 </p>
-                <a routerLink="/register">Sign me up</a>
+                <button (click)="showModal()">Join Cooperative</button>
               </div>
             </div>
           </div>
@@ -409,3 +409,61 @@
       </div>
     </section>
   </section>
+
+
+  <div class="modal-overlay" *ngIf="isModalVisible" >
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="auth-modal-content">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="auth-modal-content-images d-flex justify-content-center align-items-center">
+                  <img
+                    src="../../../assets/images/Mask Group.png"
+                    alt=""
+                    class="img-responsive"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="ready-state">
+                  <h4>
+                    Fill the form below to join {{cooperative.name}}
+                  </h4>
+                  <form (ngSubmit)="onSubmit(requestForm)" #requestForm="ngForm">
+                    <div class="form-group">
+                      <input type="text" placeholder="First name" [(ngModel)]="user.first_name" name="first_name" id="first_name"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" placeholder="Last name" [(ngModel)]="user.last_name" name="last_name" id="last_name"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" placeholder="Phone number" [(ngModel)]="user.phone_number" name="phone_number" id="phone_number"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="email" placeholder="Email Address" [(ngModel)]="user.email" name="email" id="email"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" placeholder="Gender e.g (male or female)" [(ngModel)]="user.gender" name="gender" id="gender"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="date" placeholder="date of birth" [(ngModel)]="user.dob" name="dob" id="dob"/>
+                    </div>
+                    
+                      <button class="btn btn__red modal_btn"
+                        >Join {{cooperative.name}}</button>
+                  </form>
+
+                  <!-- <span>
+                    Already have an account?
+                    <a href="login.html">Log in</a>
+                  </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

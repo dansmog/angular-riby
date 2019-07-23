@@ -37,12 +37,12 @@ export class CorporativesComponent implements OnInit {
     })
   }
 
-  showModal = () => {
-    this.isAuthModalVisible = true;
-  }
+  // showModal = () => {
+  //   this.isAuthModalVisible = true;
+  // }
 
-  closeModal = () => {
-    this.isAuthModalVisible = false;
-  }
+  // closeModal = () => {
+  //   this.isAuthModalVisible = false;
+  // }
 
 }

@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {  NgbDatepicker } from '@ng-bootstrap/ng-bootstrap'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DiscoveryComponent } from './discovery/discovery.component';
-import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LoansComponent } from './Loans/loans/loans.component';
@@ -25,7 +26,6 @@ import { ModalService } from './shared/modal.service';
     AppComponent,
     HomeComponent,
     DiscoveryComponent,
-    AuthModalComponent,
     BookmarksComponent,
     PortfolioComponent,
     LoansComponent,
@@ -40,6 +40,8 @@ import { ModalService } from './shared/modal.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [RestApiService, ModalService],
   bootstrap: [AppComponent]
