@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {  NgbDatepicker } from '@ng-bootstrap/ng-bootstrap'
+import { MomentModule } from 'ngx-moment';
+
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +44,12 @@ import { ModalService } from './shared/modal.service';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MomentModule.forRoot({
+      relativeTimeThresholdOptions: {
+        'm': 59
+      }
+    })
   ],
   providers: [RestApiService, ModalService],
   bootstrap: [AppComponent]

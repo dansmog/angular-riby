@@ -64,7 +64,7 @@
               <h4 class="dcy-util-text">
                 Loans
                 <span class="dcy-util-text__light"
-                  >({{ total }})</span
+                  >page {{currentPage }} of ({{ total }})</span
                 >
               </h4>
             </div>
@@ -85,7 +85,7 @@
                     <div class="savings-card">
                       <h6>{{loan.name}}</h6>
                       <div class="name-title">
-                        <span class="name-logo">{{loan.name.split(' ')}}</span>
+                        <span class="name-logo"></span>
                         <span class="name">{{loan.corporative}}</span>
                       </div>
                     </div>
@@ -96,31 +96,26 @@
                             class="d-flex justify-content-between align-items-center"
                           >
                             <h6>Start date</h6>
-                            <span>{{loan.start}}</span>
+                            <span>{{loan.start | amFromUtc  | amParse:'DD/MM' | amDateFormat:'LL'}}</span>
                           </div>
                           <div
                             class="d-flex justify-content-between align-items-center savings-tp"
                           >
                             <h6>End date</h6>
-                            <span>{{loan.end}}</span>
+                            <span>{{loan.end | amFromUtc  | amParse:'DD/MM' | amDateFormat:'LL'}}</span>
                           </div>
+                        
                           <div
                             class="d-flex justify-content-between align-items-center savings-tp"
                           >
-                            <h6>Frequency</h6>
-                            <span>{{loan.frequency}}</span>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>Paycode</h6>
-                            <span>{{loan.paycode}}</span>
+                            <h6>Interest Rate</h6>
+                            <span>%{{loan.interest_rate}}</span>
                           </div>
                           <div
                             class="d-flex justify-content-between align-items-center savings-tp"
                           >
                             <h6>Amount</h6>
-                            <span>{{loan.amount}}</span>
+                            <span>N{{loan.min_amount}} - N{{loan.max_amount}}</span>
                           </div>
                         </div>
                       </div>
@@ -172,7 +167,7 @@
               class="col-sm-12 d-flex align-items-center justify-content-center"
             >
               <div class="pagination-bar">
-                <button class="pagination-bar__back pagination-bar-btn">
+                <button class="pagination-bar__back pagination-bar-btn" (click)="prevPage()">
                   <img src="../../../assets/images/arrow-back.png" alt="" />
                 </button>
                 <div
@@ -180,11 +175,11 @@
                 >
                   <span>Page</span>
                   <div class="page-counter">
-                    1
+                    {{currentPage}}
                   </div>
-                  <span>of 13</span>
+                  <span>of {{total}}</span>
                 </div>
-                <button class="pagination-bar__forward pagination-bar-btn">
+                <button class="pagination-bar__forward pagination-bar-btn" (click)="nextPage()">
                   <img src="../assets/images/arrow-forward.png" alt="" />
                 </button>
               </div>
