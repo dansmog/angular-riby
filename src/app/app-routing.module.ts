@@ -35,6 +35,12 @@ const routes: Routes = [
       },
       {
         path: ':id', component: CorporativeComponent,
+      },
+      {
+        path: ":id/loans" , component: CorporativesComponent
+      },
+      {
+        path: ":id/loans/:loanId" , component: CorporativesComponent
       }
     ]
   },

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError, of} from 'rxjs';
 
 
 @Injectable({
@@ -55,5 +55,20 @@ export class RestApiService {
     return this.http.post<any>('https://testapis.riby.ng/rcb/cp/v1/member-join-request', { headers })
   }
 
-
+  /**
+   * @param query the search query string
+   * @param type type is a string of the properties being searched, if its "investments, loans or cooperatives"
+   */
+  filterResults(query: string, type: string): Observable<any>{
+    let headers = new HttpHeaders().set("Authorization", "Bearer 515c7c62174d50bc2be192b623e3effb372bd49a");
+    if (type === 'investments') {
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/cm/v1/contribution-type?filter=${query}`, { headers });
+    }
+    if (type === 'loans') {
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/lm/v1/loan-type?filter=${query}`, { headers });
+    }
+    if (type === 'cooporatives') {
+      return this.http.get<any>(`https://testapis.riby.ng/rcb/cp/v1/cooperative?filter=${query}`, { headers });
+    }
+  }
 }

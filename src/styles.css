@@ -39,7 +39,7 @@ button {
   line-height: 26px;
   letter-spacing: 0.8px;
   color: #0b213c;
-  margin-top:20px;
+  margin-top: 20px;
 }
 .button {
   display: block;
@@ -52,14 +52,14 @@ button {
   border-radius: 4px;
   color: #fff;
   width: 300px;
-  margin-left:100px;
+  margin-left: 100px;
 }
 a:hover {
   text-decoration: none;
-  color:#fff;
+  color: #fff;
 }
-.mg_top-lg{
-  top:130px;
+.mg_top-lg {
+  top: 130px;
 }
 
 .about-discovery {
@@ -69,7 +69,7 @@ a:hover {
 }
 .about-discovery__card {
   margin-top: 15px;
-  padding:20px;
+  padding: 20px;
 }
 .about-discovery__image {
   height: 200px;
@@ -224,7 +224,7 @@ header {
 .discovery-container {
   background-color: #f1f2f6;
   padding: 60px 0;
-  min-height: 100Vh;
+  min-height: 100vh;
 }
 .discovery-single {
   background-color: #f1f2f6;
@@ -285,13 +285,13 @@ header {
 
   color: #4a90e2;
 }
-.savings-tp{
-  margin-top:16px;
+.savings-tp {
+  margin-top: 16px;
 }
 .savings-card .name-title {
   margin-left: 0px !important;
 }
-.savings-card .name-logo{
+.savings-card .name-logo {
   background: rgba(74, 144, 226, 0.16) !important;
 }
 .dcy-list-item__header {
@@ -468,8 +468,13 @@ header {
 .auth-modal-content {
   background-color: white;
   padding: 50px 20px;
-  display: flex;
-  margin-top: 40%;
+  margin-top: 50px;
+}
+.auth-modal-content .close-btn {
+  width: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 .auth-modal-content-images img {
   width: 100%;
@@ -495,6 +500,9 @@ header {
   display: block;
   width: 100%;
   margin-bottom: 25px;
+}
+.modal_btn:focus{
+  color: #fff;
 }
 .btn__red {
   background: #e22424;
@@ -547,6 +555,9 @@ input::placeholder {
   line-height: 21px;
   color: #637381;
   padding: 10px;
+}
+.dcy-breadcrumb a:first-child {
+  padding-left: 0;
 }
 .dcy .dcy-breadcrumb a::after {
   content: "";
@@ -779,8 +790,8 @@ input::placeholder {
   color: #fff;
   font-size: 16px;
 }
-.is-warning a{
-  display:block;
+.is-warning a {
+  display: block;
   background: #e22424;
   border-radius: 4px;
   cursor: pointer;
@@ -789,7 +800,7 @@ input::placeholder {
   padding: 13px 0;
   color: #fff;
   font-size: 16px;
-  text-align:center;
+  text-align: center;
 }
 
 .make-offer-footer {
@@ -818,7 +829,95 @@ input::placeholder {
   color: #000000;
 }
 
-
+form #search {
+  background: #f4f6f8;
+  border: 1px solid rgba(151, 151, 151, 0.2);
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #000;
+  padding: 12px 8px;
+  width: 300px;
+  outline: none;
+}
 
 /** responsive design  **/
 /** am sorry for jampacking the whole thing in one file, have mercy on me **/
+
+@media (max-width: 480px) {
+  .product-full-description {
+    padding: 20px 15px;
+  }
+  .discovery-single {
+    padding: 0;
+  }
+  .dcy-breadcrumb {
+    margin-top: 20px;
+  }
+  .dcy-breadcrumb a {
+    font-size: 12px;
+    line-height: 21px;
+    color: #637381;
+    padding: 10px;
+  }
+  .is-warning {
+    padding: 20px 15px;
+  }
+  .auth-modal-content {
+    background-color: white;
+    padding: 20px 20px;
+    margin-top: 30px;
+  }
+  .auth-modal-content-images img {
+    display: none;
+  }
+
+  input {
+    font-size: 12px;
+    padding: 12px 8px;
+    width: 100%;
+    outline: none;
+  }
+  input::placeholder {
+    font-size: 12px;
+  }
+  .ready-state h4 {
+    font-size: 13px;
+  }
+
+  .other-products {
+    padding: 22px 15px;
+  }
+  .summary h5,
+  .product-single-farming-stage h5,
+  .product-full-description h6,
+  .other-products h6 {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .is-warning p {
+    font-size: 12px;
+  }
+  .is-warning {
+    padding: 24px 15px;
+  }
+  .is-warning button {
+    padding: 13px 0;
+    font-size: 12px;
+  }
+
+  .other-products {
+    padding: 22px 15px;
+  }
+  .summary h5,
+  .product-single-farming-stage h5,
+  .product-full-description h6,
+  .other-products h6 {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}

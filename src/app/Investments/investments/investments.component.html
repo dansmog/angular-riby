@@ -76,33 +76,39 @@
         <div class="discovery-content" *ngIf="!isLoading">
           <div class="row">
             <div class="col-sm-3" *ngFor="let investment of investments">
+        
               <a [routerLink]="['/investments', investment.id]">
                 <div class="dcy-list-item dcy-card">
-                  <div class="dcy-list-item__header">
-                    <img
-                      src={{investment.imageUrl}}
-                      alt=""
-                      class="img-responsive"
-                    />
-                    <div class="dcy-list-item__overlay">
-                      <div class="name-title">
-                        <span class="name-logo">FI</span>
-                        <span class="name">{{investment.farmer}}</span>
-                      </div>
+                  <div class="savings-card">
+                    <h6>{{investment.name}}</h6>
+                    <div class="name-title">
+                      <span class="name-logo"></span>
+                      <!-- <span class="name">{{investment.corporative}}</span> -->
                     </div>
                   </div>
                   <div class="dcy-list-item__body">
-                    <div class="title">
-                      <h6>{{investment.name}}</h6>
-                      <span>{{investment.available}} . N{{investment.price}}/ton</span>
-                    </div>
-                    <div class="farming-stage">
-                      <div class="farming-stage__children">
-                        <span>Farming stage</span>
-                        <span>{{investment.stage}}</span>
-                      </div>
-                      <div class="farming-stage__progress">
-                        <div class="is-progressing progress-count"></div>
+                    <div class="corporative-info">
+                      <div class="corporative-info__children">
+                        <div
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <h6>Start date</h6>
+                          <span>{{investment.start_date | amFromUtc  | amParse:'DD/MM' | amDateFormat:'LL'}}</span>
+                        </div>
+                      
+                      
+                        <div
+                          class="d-flex justify-content-between align-items-center savings-tp"
+                        >
+                          <h6>Interest Rate</h6>
+                          <span>%{{investment.interest_rate}}</span>
+                        </div>
+                        <div
+                          class="d-flex justify-content-between align-items-center savings-tp"
+                        >
+                          <h6>Amount</h6>
+                          <!-- <span>N{{loan.min_amount}} - N{{loan.max_amount}}</span> -->
+                        </div>
                       </div>
                     </div>
                   </div>

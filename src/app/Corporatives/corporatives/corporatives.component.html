@@ -4,10 +4,15 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 ">
-          <div class="header-container d-flex justify-content-center align-items-center">
+          <div
+            class="header-container d-flex justify-content-center align-items-center"
+          >
             <div class="header-logo">
               <a routerLink="/discovery">
-                <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
+                <img
+                  src="../../../assets/images/riby-logo.png"
+                  alt="riby logo"
+                />
               </a>
             </div>
             <!-- <div class="header-menu d-flex">
@@ -60,25 +65,37 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-between">
-          <div class="dcy-util-header">
+          <div class="dcy-util-header" *ngIf="total >= 10; else elseBlock">
             <h4 class="dcy-util-text">
               Corporatives
               <span class="dcy-util-text__light"
-                >page {{currentPage}} of ({{ total }})</span
+                >page {{ currentPage }} of ({{ total }})</span
               >
             </h4>
           </div>
+          <ng-template #elseBlock>
+            <div class="dcy-util-header">
+              <h4 class="dcy-util-text">
+                Corporatives
+              </h4>
+            </div>
+          </ng-template>
           <div class="dcy-sort">
-            <span class="dcy-sort-text__light">sort by</span>
-
-            <select>
-              <option>Recent</option>
-            </select>
+            <form>
+              <input
+                type="text"
+                placeholder="search"
+                [(ngModel)]="queryParams"
+                name="queryParams"
+                id="search"
+                (keyup)="searchForCooporatives('cooporatives')"
+              />
+            </form>
           </div>
         </div>
       </div>
       <div class="discovery-content">
-        <div class="row">
+        <div class="row" *ngIf="total !== 0; else emptystate">
           <div class="col-sm-3" *ngFor="let corporative of corporatives">
             <a [routerLink]="['/corporatives', corporative.id]">
               <div class="dcy-list-item dcy-card">
@@ -105,10 +122,11 @@
                         saving per annum
                       </h6>
                       <h6>
-                        <span>{{corporative.duration}}</span> Saving duration before loan
+                        <span>{{ corporative.duration }}</span> Saving duration
+                        before loan
                         <h6>
-                          <span>{{corporative.repayment}}</span> Loan repayment period
-                          eligibility
+                          <span>{{ corporative.repayment }}</span> Loan
+                          repayment period eligibility
                         </h6>
                       </h6>
                     </div>
@@ -154,14 +172,22 @@
             </a>
           </div>
         </div>
+        <div class="row">
+          <ng-template #emptystate>
+            <app-emptystate></app-emptystate>
+          </ng-template>
+        </div>
       </div>
       <div class="pagination-container">
         <div class="row">
           <div
             class="col-sm-12 d-flex align-items-center justify-content-center"
           >
-            <div class="pagination-bar">
-              <button class="pagination-bar__back pagination-bar-btn" (click)="prevPage()">
+            <div class="pagination-bar" *ngIf="total >= 10">
+              <button
+                class="pagination-bar__back pagination-bar-btn"
+                (click)="prevPage()"
+              >
                 <img src="../../../assets/images/arrow-back.png" alt="" />
               </button>
               <div
@@ -169,11 +195,14 @@
               >
                 <span>Page</span>
                 <div class="page-counter">
-                  {{currentPage}}
+                  {{ currentPage }}
                 </div>
-                <span>of {{total}}</span>
+                <span>of {{ total }}</span>
               </div>
-              <button class="pagination-bar__forward pagination-bar-btn" (click)="nextPage()">
+              <button
+                class="pagination-bar__forward pagination-bar-btn"
+                (click)="nextPage()"
+              >
                 <img src="../assets/images/arrow-forward.png" alt="" />
               </button>
             </div>

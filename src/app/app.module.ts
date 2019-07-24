@@ -22,6 +22,8 @@ import { Error404Component } from './error404/error404.component'
 import { HttpClientModule } from '@angular/common/http';
 import { RestApiService } from './shared/rest-api.service';
 import { ModalService } from './shared/modal.service';
+import { EmptystateComponent } from './emptystate/emptystate.component';
+import { InlineSpinnerComponent } from './inline-spinner/inline-spinner.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ModalService } from './shared/modal.service';
     InvestmentComponent,
     CorporativesComponent,
     CorporativeComponent,
-    Error404Component
+    Error404Component,
+    EmptystateComponent,
+    InlineSpinnerComponent
   ],
   imports: [
     BrowserModule,

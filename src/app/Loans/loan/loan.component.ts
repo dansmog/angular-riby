@@ -17,7 +17,6 @@ export class LoanComponent implements OnInit {
   isModalVisible: boolean = false;
   cooperative_id = null;
   user = { dob: null };
-  check = "this is a check";
 
   constructor(private rest: RestApiService, private route: ActivatedRoute, private modal: ModalService, private spinner: NgxSpinnerService) { }
 
