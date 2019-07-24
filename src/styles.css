@@ -501,7 +501,7 @@ header {
   width: 100%;
   margin-bottom: 25px;
 }
-.modal_btn:focus{
+.modal_btn:focus {
   color: #fff;
 }
 .btn__red {
@@ -895,6 +895,21 @@ form #search {
   .other-products h6 {
     font-size: 13px;
     line-height: 14px;
+  }
+  .discovery-content {
+    margin-top: 20px;
+}
+
+  .discovery-container .col-sm-12{
+    flex-direction: column;
+  }
+  .dcy-util-text {
+    font-size: 16px;
+  }
+  form #search{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 8px;
   }
 }
 
