@@ -1,0 +1,25 @@
+.summary h5,
+.product-single-farming-stage h5,
+.product-full-description h6,
+.other-products h6 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #85909d;
+}
+
+.dcy-list-item__body {
+  margin-top: 8px;
+  padding: 15px;
+}
+
+.summary,
+.product-single-farming-stage,
+.product-full-description,
+.other-products a {
+  color: #000;
+}
+
+a{
+  color:#000;
+}

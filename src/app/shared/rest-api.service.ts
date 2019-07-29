@@ -4,12 +4,14 @@ import { Observable, throwError, of } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import {  retry, catchError  } from 'rxjs/operators'
 
+import { GlobalHttpInterceptorService } from '../interceptors/global-http-interceptor-service.service'
+
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorHandler: GlobalHttpInterceptorService) { }
 
   /**
    * @param type the type of resource either a contribution| loans | cooperative
@@ -21,7 +23,7 @@ export class RestApiService {
       return this.http.get<any>(`${environment.devUrl}/rcb/cm/v1/contribution-type?limit=${limit}&page=${page}`);
     }
     if( type === 'loans'){
-      return this.http.get<any>(`${environment.devUrl}/rcb/lm/v1/loan-type?limit=${limit}&page=${page}`).pipe(retry(1), catchError(this.handleError))
+      return this.http.get<any>(`${environment.devUrl}/rcb/lm/v1/loan-type?limit=${limit}&page=${page}`)
     }
     if(type === 'cooperatives'){
       return this.http.get<any>(`${environment.devUrl}/rcb/cp/v1/cooperative?limit=${limit}&page=${page}`)
@@ -44,7 +46,7 @@ export class RestApiService {
   //perform member join request to a cooperative
   postMemberRequest(user): Observable<any> {
     let headers = new HttpHeaders().set("Authorization", "Bearer " + environment.token);
-    return this.http.post<any>(`${environment.devUrl}/rcb/cp/v1/member-join-request`, user).pipe(retry(1), catchError(this.handleError))
+    return this.http.post<any>(`${environment.devUrl}/rcb/cp/v1/member-join-request`, user);
   }
 
 
@@ -89,9 +91,8 @@ handleError(error) {
     errorMessage = error.error.message;
   } else if(error.status === 400){
     // Get server-side error
-    errorMessage = `${error.responseText}`;
+    errorMessage = `${error.error.responseText}`;
   }
-  window.alert(errorMessage);
   return throwError(errorMessage);
 }
 

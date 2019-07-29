@@ -94,66 +94,97 @@
                     </div>
                   </div>
                   <div class="product-single-farming-stage">
-                   
                     <div class="row">
-                      <div class="col-sm-3" *ngIf="!isLoading">
+                      <div class="col-sm-12 col-md-12 col-lg-3">
                         <h5>Available Loan options</h5>
                       </div>
-                      <div class="col-sm-9">
+                      <div
+                        class="col-sm-12 col-md-12 col-lg-9"
+                        *ngIf="
+                          cooperative_loans === undefined ||
+                            cooperative_loans.length === 0;
+                          else isAvailable
+                        "
+                      >
                         <div class="row">
-                          <div class="col-sm-6">
-                            <a [routerLink]="['../../corporatives', 'AAAAA', 'loans']">
-                              <div class="dcy-list-item dcy-card">
-                                <div class="savings-card">
-                                  <h6>name</h6>
-                                  <div class="name-title">
-                                    <span class="name-logo">FI</span>
-                                    <span class="name"
-                                      >Fisherman Cooperative Society</span
-                                    >
+                          <div class="col-sm-12">
+                            <p>This coopeartive doesn't have any loans yet!</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-template #isAvailable>
+                        <div class="col-sm-12">
+                          <div class="row">
+                            <div
+                              class="col-sm-12 col-md-12 col-lg-6"
+                              *ngFor="let loans of cooperative_loans"
+                            >
+                              <a [routerLink]="[]">
+                                <div class="dcy-list-item dcy-card">
+                                  <div class="savings-card">
+                                    <h6>{{ loans.name }}</h6>
+                                    <div class="name-title">
+                                      <span class="name-logo">FI</span>
+                                      <span class="name">{{
+                                        loans.owner_name
+                                      }}</span>
+                                    </div>
                                   </div>
-                                </div>
-                                <div class="dcy-list-item__body">
-                                  <div class="corporative-info">
-                                    <div class="corporative-info__children">
-                                      <div
-                                        class="d-flex justify-content-between align-items-center"
-                                      >
-                                        <h6>Start date</h6>
-                                        <span>June 29th</span>
-                                      </div>
-                                      <div
-                                        class="d-flex justify-content-between align-items-center savings-tp"
-                                      >
-                                        <h6>End date</h6>
-                                        <span>N/A</span>
-                                      </div>
-                                      <div
-                                        class="d-flex justify-content-between align-items-center savings-tp"
-                                      >
-                                        <h6>Frequency</h6>
-                                        <span>Monthly</span>
-                                      </div>
-                                      <div
-                                        class="d-flex justify-content-between align-items-center savings-tp"
-                                      >
-                                        <h6>Paycode</h6>
-                                        <span>-</span>
-                                      </div>
-                                      <div
-                                        class="d-flex justify-content-between align-items-center savings-tp"
-                                      >
-                                        <h6>Amount</h6>
-                                        <span>-</span>
+                                  <div class="dcy-list-item__body">
+                                    <div class="corporative-info">
+                                      <div class="corporative-info__children">
+                                        <div
+                                          class="d-flex justify-content-between align-items-center"
+                                        >
+                                          <h6>Start date</h6>
+                                          <span>{{
+                                            loans.start_date
+                                              | amFromUtc
+                                              | amParse: "DD/MM"
+                                              | amDateFormat: "LL"
+                                          }}</span>
+                                        </div>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center savings-tp"
+                                        >
+                                          <h6>End date</h6>
+                                          <span>{{
+                                            loans.start_date
+                                              | amFromUtc
+                                              | amParse: "DD/MM"
+                                              | amDateFormat: "LL"
+                                          }}</span>
+                                        </div>
+                                        <div
+                                          class="d-flex justify-content-between align-items-center savings-tp"
+                                        >
+                                          <h6>Interest Rate</h6>
+                                          <span
+                                            >%{{ loans.interest_rate }}</span
+                                          >
+                                        </div>
+
+                                        <div
+                                          class="d-flex justify-content-between align-items-center savings-tp"
+                                        >
+                                          <h6>Amount</h6>
+                                          <span
+                                            >N{{
+                                              loans.min_amount -
+                                                loans.max_amount
+                                            }}</span
+                                          >
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            </a>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </ng-template>
                     </div>
                   </div>
                   <div class="footer">
@@ -185,16 +216,31 @@
         <div class="col-sm-12">
           <div class="other-products">
             <div class="row">
-              <div class="col-sm-12">
+              <div
+                class="col-sm-12 d-flex justify-content-between align-items-center"
+              >
                 <h6>Also by farmer</h6>
+                <a
+                  *ngIf="cooperative_investments"
+                  [routerLink]="[
+                    '../../corporatives',
+                 
+                    'investments'
+                  ]"
+                  class="view-more-link"
+                  >view all investments</a
+                >
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-3">
-                <a routerLink="savings.html">
+              <div
+                class="col-sm-3"
+                *ngFor="let investments of cooperative_investments"
+              >
+                <a [routerLink]="[]">
                   <div class="dcy-list-item dcy-card">
                     <div class="savings-card">
-                      <h6>Car savings</h6>
+                      <h6>{{ investments.name }}</h6>
                       <div class="name-title">
                         <span class="name-logo">FI</span>
                         <span class="name">Fisherman Cooperative Society</span>
@@ -207,7 +253,12 @@
                             class="d-flex justify-content-between align-items-center"
                           >
                             <h6>Start date</h6>
-                            <span>June 29th</span>
+                            <span>{{
+                              investments.start_date
+                                | amFromUtc
+                                | amParse: "DD/MM"
+                                | amDateFormat: "LL"
+                            }}</span>
                           </div>
                           <div
                             class="d-flex justify-content-between align-items-center savings-tp"
@@ -219,73 +270,18 @@
                             class="d-flex justify-content-between align-items-center savings-tp"
                           >
                             <h6>Frequency</h6>
-                            <span>Monthly</span>
+                            <span>{{ investments.frequency }}</span>
                           </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>Paycode</h6>
-                            <span>-</span>
-                          </div>
+                        
                           <div
                             class="d-flex justify-content-between align-items-center savings-tp"
                           >
                             <h6>Amount</h6>
-                            <span>-</span>
+                            <span>{{ investments.amount_value }}</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col-sm-3">
-                <a routerLink="savings.html">
-                  <div class="dcy-list-item dcy-card">
-                    <div class="savings-card">
-                      <h6>Car savings</h6>
-                      <div class="name-title">
-                        <span class="name-logo">FI</span>
-                        <span class="name">Fisherman Cooperative Society</span>
-                      </div>
-                    </div>
-                    <div class="dcy-list-item__body">
-                      <div class="corporative-info">
-                        <div class="corporative-info__children">
-                          <div
-                            class="d-flex justify-content-between align-items-center"
-                          >
-                            <h6>Start date</h6>
-                            <span>June 29th</span>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>End date</h6>
-                            <span>N/A</span>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>Frequency</h6>
-                            <span>Monthly</span>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>Paycode</h6>
-                            <span>-</span>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center savings-tp"
-                          >
-                            <h6>Amount</h6>
-                            <span>-</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-              
                   </div>
                 </a>
               </div>
@@ -362,16 +358,50 @@
                       name="email"
                       id="email"
                     />
+                    <div *ngIf="isSubmitted && email.invalid">
+                      <p>Please select either value</p>
+                    </div>
                   </div>
                   <div class="form-group">
-                    <input
-                      type="text"
-                      placeholder="Gender e.g (male or female)"
-                      [(ngModel)]="user.gender"
-                      name="gender"
-                      id="gender"
-                    />
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="custom-control custom-radio">
+                          <input
+                            id="male"
+                            type="radio"
+                            class="custom-control-input"
+                            value="male"
+                            name="gender"
+                            [(ngModel)]="user.gender"
+                          />
+                          <label class="custom-control-label" for="male"
+                            >Male</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="custom-control custom-radio">
+                          <input
+                            id="female"
+                            type="radio"
+                            class="custom-control-input"
+                            value="female"
+                            name="gender"
+                            [(ngModel)]="user.gender"
+                          />
+                          <label class="custom-control-label" for="female"
+                            >Female</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div *ngIf="isSubmitted && gender.invalid">
+                        <p>Please select either value</p>
+                      </div>
+                    </div>
                   </div>
+
                   <div class="form-group">
                     <input
                       type="date"
@@ -382,7 +412,9 @@
                     />
                   </div>
                   <button class="btn btn__red modal_btn" [disabled]="isLoading">
-                    {{ isLoading ? "signing up..." : "Join loan.owner_name" }}
+                    {{
+                      isLoading ? "signing up..." : "Join " + loan.owner_name
+                    }}
                   </button>
                 </form>
 

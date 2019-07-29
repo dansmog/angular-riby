@@ -495,7 +495,7 @@ header {
   cursor: pointer;
 }
 .modal_btn {
-  padding: 13px 0;
+  padding: 13px 10px;
   font-size: 13px;
   display: block;
   width: 100%;
@@ -577,6 +577,10 @@ input::placeholder {
   display: block;
 } */
 
+.view-more-link{
+  font-size:14px;
+  color:#e22424 !important;
+}
 .products-single-short {
   background-color: #fff;
   border: 1px solid rgba(151, 151, 151, 0.2);

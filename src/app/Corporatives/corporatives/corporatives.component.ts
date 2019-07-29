@@ -41,23 +41,19 @@ export class CorporativesComponent implements OnInit {
 
   fetchCooporatives(page) {
     this.spinner.show();
-    if (this.hasCooperativeId) {
-      this.rest.fetchCooperativeLoans(this.cooperativeId, 10).subscribe(data => {
-        this.corporatives_loans = data.payload.loan_types
-        console.log(data.payload.loan_types)
-        this.spinner.hide();
-        this.isLoading = false;
-      })
-    } else {
-      this.rest.getAllResoureBy('cooperatives', 10, page).subscribe(data => {
-        this.spinner.hide();
-        this.isLoading = false;
-        console.log(data.payload.cooperatives)
-        this.corporatives = data.payload.cooperatives;
-        this.total = data.payload.total;
-      })
 
-    }
+    this.rest.getAllResoureBy('cooperatives', 10, page).subscribe(data => {
+      this.spinner.hide();
+      this.isLoading = false;
+      console.log(data.payload.cooperatives)
+      this.corporatives = data.payload.cooperatives;
+      this.total = data.payload.total;
+    }, err => {
+      this.spinner.hide();
+      console.log(err)
+    })
+
+
   }
 
   searchForCooporatives(type: string) {

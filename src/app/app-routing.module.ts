@@ -71,7 +71,11 @@ const routes: Routes = [
       },
       {
         path: ':id', component: InvestmentComponent,
+      },
+      {
+        path: ':cId/investments', component: CooperativeItemsComponent
       }
+
     ]
   },
   { path: '**', component: Error404Component }

@@ -26,13 +26,17 @@ export class InvestmentsComponent implements OnInit {
 
   fetchInvestments(page){
     this.spinner.show()
-    this.rest.getAllResoureBy('investments', 10, page).subscribe(data => {
+   return this.rest.getAllResoureBy('investments', 10, page).subscribe(data => {
       this.investments = data.payload.contribution_types;
       this.total = data.payload.total;
       this.isLoading = false;
       this.spinner.hide()
       console.log(this.investments)
+    }, err => {
+      this.spinner.hide();
+      return err
     })
+  
   }
 
   searchForInvestments(type: string) {
@@ -41,6 +45,8 @@ export class InvestmentsComponent implements OnInit {
       this.isSearchLoading = false;
       this.total = data.payload.total;
       this.investments = data.payload.contribution_types;
+    }, err => {
+      console.log(err)
     })
   }
 
@@ -48,9 +54,12 @@ export class InvestmentsComponent implements OnInit {
     this.currentPage += 1
     if(this.currentPage >= this.total){
       this.currentPage = this.total
-      this.fetchInvestments(this.currentPage);
+      const result = this.fetchInvestments(this.currentPage);
+      if(!result){
+        this.currentPage -= 1;
+      }
     }else{
-      this.fetchInvestments(this.currentPage);
+      return this.fetchInvestments(this.currentPage);
     }
   }
 

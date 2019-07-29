@@ -28,6 +28,12 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
               case 403:     //forbidden
                 console.log(error)
                 break;
+              case 400:
+                return throwError(error.error.responseText)
+              case 500:
+                return throwError(error.error.responseText)
+              case 0:
+                return throwError(error)
             }
           }
         } else {

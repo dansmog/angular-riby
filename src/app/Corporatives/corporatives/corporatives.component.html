@@ -1,5 +1,5 @@
 <section>
-  <ngx-spinner></ngx-spinner>
+  <!-- <ngx-spinner></ngx-spinner> -->
   <header>
     <div class="container">
       <div class="row">
@@ -54,13 +54,13 @@
         </div>
       </div>
       <div class="discovery-content">
-        <div class="row" *ngIf="total !== 0; else emptystate">
+        <div class="row" *ngIf="corporatives; else emptystate">
           <div class="col-sm-3" *ngFor="let corporative of corporatives">
             <a [routerLink]="['/corporatives', corporative.id]">
               <div class="dcy-list-item dcy-card">
                 <div class="dcy-list-item__header">
                   <img
-                    src="https://res.cloudinary.com/dotvhpvra/image/upload/v1563993532/bank-of-industry_f7flxd.jpg"
+                    src="https://res.cloudinary.com/dotvhpvra/image/upload/v1563992181/riby-logo_cbrqdr.png"
                     alt=""
                     class="img-responsive"
                   />
@@ -131,11 +131,11 @@
           </div>
         </div>
 
-        <div class="row">
-          <ng-template #emptystate>
+        <ng-template #emptystate>
+          <div class="row">
             <app-emptystate></app-emptystate>
-          </ng-template>
-        </div>
+          </div>
+        </ng-template>
       </div>
       <div class="pagination-container">
         <div class="row">

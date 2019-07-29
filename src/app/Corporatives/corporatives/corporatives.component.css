@@ -1,0 +1,13 @@
+.dcy-list-item__header img{
+  background-size: contain;
+  height:auto;
+}
+
+.dcy-list-item__header {
+  width: 100%;
+  height: 146px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
