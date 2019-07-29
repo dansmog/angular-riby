@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
+
+
 import { RestApiService } from '../../shared/rest-api.service';
 import { NgxSpinnerService } from "ngx-spinner";
+
 
 
 @Component({
@@ -10,9 +14,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoansComponent implements OnInit {
   isLoading: boolean = false;
-  loans  = [];
-  total = 0;
-  currentPage = 1
+  loans = [];
+  total: number = 0;
+  currentPage: number = 1;
+  isSearchLoading: boolean = false;
+  queryParams: string = '';
 
   constructor(private rest: RestApiService, private spinner: NgxSpinnerService) { }
 
@@ -22,7 +28,7 @@ export class LoansComponent implements OnInit {
   
    fetchLoans(page){
      this.spinner.show();
-     this.rest.getLoans(10, page).subscribe(data => {
+     this.rest.getAllResoureBy('loans', 10, page).subscribe(data => {
       this.loans = data.payload.loan_types;
       this.total = data.payload.total;
       console.log(data)
@@ -31,6 +37,16 @@ export class LoansComponent implements OnInit {
      })
    }
  
+   searchForLoans(type: string) {
+    this.isSearchLoading = true;
+    this.rest.filterResults(this.queryParams, type).pipe(debounceTime(100), distinctUntilChanged()).subscribe(data => {
+      this.isSearchLoading = false;
+      this.total = data.payload.total;
+      this.loans = data.payload.loan_types;
+    })
+  }
+
+
    nextPage(){
      this.currentPage += 1
      if(this.currentPage >= this.total){
@@ -52,3 +68,5 @@ export class LoansComponent implements OnInit {
    }
 
 }
+
+

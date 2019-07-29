@@ -6,7 +6,7 @@
         <div class="col-sm-12 ">
           <div class="header-container d-flex justify-content-center align-items-center">
             <div class="header-logo">
-              <a routerLink="/discovery">
+              <a routerLink="/corporatives">
                 <img src="../../../assets/images/riby-logo.png" alt="riby logo" />
               </a>
             </div>
@@ -69,11 +69,17 @@
               </h4>
             </div>
             <div class="dcy-sort">
-              <span class="dcy-sort-text__light">sort by</span>
-  
-              <select>
-                <option>Recent</option>
-              </select>
+             
+              <form>
+                <input
+                  type="text"
+                  placeholder="search"
+                  [(ngModel)]="queryParams"
+                  name="queryParams"
+                  id="search"
+                  (keyup)="searchForLoans('loans')"
+                />
+              </form>
             </div>
           </div>
         </div>
@@ -86,7 +92,7 @@
                       <h6>{{loan.name}}</h6>
                       <div class="name-title">
                         <span class="name-logo"></span>
-                        <span class="name">{{loan.corporative}}</span>
+                        <span class="name">{{loan.owner_name}}</span>
                       </div>
                     </div>
                     <div class="dcy-list-item__body">

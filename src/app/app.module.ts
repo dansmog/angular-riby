@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MomentModule } from 'ngx-moment';
 
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -19,11 +20,14 @@ import { CorporativesComponent } from './Corporatives/corporatives/corporatives.
 import { CorporativeComponent } from './Corporatives/corporative/corporative.component';
 import { Error404Component } from './error404/error404.component'
 
-import { HttpClientModule } from '@angular/common/http';
+
 import { RestApiService } from './shared/rest-api.service';
 import { ModalService } from './shared/modal.service';
 import { EmptystateComponent } from './emptystate/emptystate.component';
 import { InlineSpinnerComponent } from './inline-spinner/inline-spinner.component';
+import { AuthService  } from './interceptors/auth.service'
+import { GlobalHttpInterceptorService } from './interceptors/global-http-interceptor-service.service';
+import { CooperativeItemsComponent } from './cooperative-items/cooperative-items.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import { InlineSpinnerComponent } from './inline-spinner/inline-spinner.componen
     CorporativeComponent,
     Error404Component,
     EmptystateComponent,
-    InlineSpinnerComponent
+    InlineSpinnerComponent,
+    CooperativeItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,11 @@ import { InlineSpinnerComponent } from './inline-spinner/inline-spinner.componen
       }
     })
   ],
-  providers: [RestApiService, ModalService],
+  providers: [
+    RestApiService, ModalService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

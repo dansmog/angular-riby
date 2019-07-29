@@ -8,9 +8,9 @@
             class="header-container d-flex justify-content-center align-items-center"
           >
             <div class="header-logo">
-              <a routerLink="/discovery">
+              <a [routerLink]="['/corporatives']">
                 <img
-                  src="../../../assets/images/riby-logo.png"
+                  src="https://res.cloudinary.com/dotvhpvra/image/upload/v1563992181/riby-logo_cbrqdr.png"
                   alt="riby logo"
                 />
               </a>
@@ -66,8 +66,11 @@
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-between">
           <div class="dcy-breadcrumb">
-            <a routerLink="/loans">Back to Loans</a>
-            <a routerLink="/corporatives">{{ loan.name }}</a>
+            <a [routerLink]="['/loans']">Back to Loans</a>
+
+            <a
+              ><span>{{ loan.name }}</span></a
+            >
           </div>
         </div>
       </div>
@@ -86,22 +89,23 @@
                         <p>
                           {{ loan.description }}
                         </p>
-                        <span>Read more...</span>
+                        <!-- <span>Read more...</span> -->
                       </div>
                     </div>
                   </div>
                   <div class="product-single-farming-stage">
+                   
                     <div class="row">
-                      <div class="col-sm-3">
+                      <div class="col-sm-3" *ngIf="!isLoading">
                         <h5>Available Loan options</h5>
                       </div>
                       <div class="col-sm-9">
                         <div class="row">
                           <div class="col-sm-6">
-                            <a routerLink="savings.html">
+                            <a [routerLink]="['../../corporatives', 'AAAAA', 'loans']">
                               <div class="dcy-list-item dcy-card">
                                 <div class="savings-card">
-                                  <h6>Car Loans</h6>
+                                  <h6>name</h6>
                                   <div class="name-title">
                                     <span class="name-logo">FI</span>
                                     <span class="name"
@@ -145,46 +149,6 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="dcy-card-footer">
-                                  <div class="card-footer__items">
-                                    <div
-                                      class="bookmark card-footer__items-circle"
-                                    >
-                                      <svg
-                                        width="10"
-                                        height="12"
-                                        viewBox="0 0 10 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M1.72554 0.107178H8.27316C8.9934 0.107178 9.58268 0.696464 9.58268 1.4167V11.8929L4.99935 9.92861L0.416016 11.8929L0.422563 1.4167C0.422563 0.696464 1.0053 0.107178 1.72554 0.107178ZM4.99927 8.50121L8.27308 9.92859V1.41668H1.72546V9.92859L4.99927 8.50121Z"
-                                          fill="#0B213C"
-                                          fill-opacity="0.5"
-                                        />
-                                      </svg>
-                                    </div>
-                                    <div
-                                      class="share card-footer__items-circle"
-                                    >
-                                      <svg
-                                        width="14"
-                                        height="12"
-                                        viewBox="0 0 14 12"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="M9.28547 0.668245C9.13777 0.548406 8.93378 0.525612 8.76327 0.609893C8.59231 0.692252 8.48355 0.865181 8.48338 1.05495V2.36934C0.664259 2.69967 0.571292 10.861 0.571292 10.9451C0.570464 11.2034 0.768687 11.4189 1.02624 11.4396H1.0658C1.30784 11.4394 1.51417 11.264 1.55338 11.0252C1.56228 10.9757 2.39602 6.29572 8.48338 6.0544V7.79803C8.48349 7.99363 8.59888 8.17078 8.77775 8.24995C8.95662 8.32911 9.16534 8.2954 9.31019 8.16396L13.2662 4.56791C13.3734 4.47039 13.4325 4.33074 13.4277 4.18589C13.423 4.04103 13.3549 3.90556 13.2415 3.81528L9.28547 0.668245Z"
-                                          fill="#0B213C"
-                                          fill-opacity="0.5"
-                                        />
-                                      </svg>
-                                    </div>
-                                  </div>
-                                </div>
                               </div>
                             </a>
                           </div>
@@ -212,7 +176,7 @@
                 You’ll have to sign up with the cooperative to access this
                 savings plan.
               </p>
-              <a (click)="showModal()">Sign me up</a>
+              <button (click)="showModal()">Sign me up</button>
             </div>
           </div>
         </div>
@@ -272,42 +236,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="dcy-card-footer">
-                      <div class="card-footer__items">
-                        <div class="bookmark card-footer__items-circle">
-                          <svg
-                            width="10"
-                            height="12"
-                            viewBox="0 0 10 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M1.72554 0.107178H8.27316C8.9934 0.107178 9.58268 0.696464 9.58268 1.4167V11.8929L4.99935 9.92861L0.416016 11.8929L0.422563 1.4167C0.422563 0.696464 1.0053 0.107178 1.72554 0.107178ZM4.99927 8.50121L8.27308 9.92859V1.41668H1.72546V9.92859L4.99927 8.50121Z"
-                              fill="#0B213C"
-                              fill-opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                        <div class="share card-footer__items-circle">
-                          <svg
-                            width="14"
-                            height="12"
-                            viewBox="0 0 14 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M9.28547 0.668245C9.13777 0.548406 8.93378 0.525612 8.76327 0.609893C8.59231 0.692252 8.48355 0.865181 8.48338 1.05495V2.36934C0.664259 2.69967 0.571292 10.861 0.571292 10.9451C0.570464 11.2034 0.768687 11.4189 1.02624 11.4396H1.0658C1.30784 11.4394 1.51417 11.264 1.55338 11.0252C1.56228 10.9757 2.39602 6.29572 8.48338 6.0544V7.79803C8.48349 7.99363 8.59888 8.17078 8.77775 8.24995C8.95662 8.32911 9.16534 8.2954 9.31019 8.16396L13.2662 4.56791C13.3734 4.47039 13.4325 4.33074 13.4277 4.18589C13.423 4.04103 13.3549 3.90556 13.2415 3.81528L9.28547 0.668245Z"
-                              fill="#0B213C"
-                              fill-opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </a>
               </div>
@@ -357,42 +285,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="dcy-card-footer">
-                      <div class="card-footer__items">
-                        <div class="bookmark card-footer__items-circle">
-                          <svg
-                            width="10"
-                            height="12"
-                            viewBox="0 0 10 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M1.72554 0.107178H8.27316C8.9934 0.107178 9.58268 0.696464 9.58268 1.4167V11.8929L4.99935 9.92861L0.416016 11.8929L0.422563 1.4167C0.422563 0.696464 1.0053 0.107178 1.72554 0.107178ZM4.99927 8.50121L8.27308 9.92859V1.41668H1.72546V9.92859L4.99927 8.50121Z"
-                              fill="#0B213C"
-                              fill-opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                        <div class="share card-footer__items-circle">
-                          <svg
-                            width="14"
-                            height="12"
-                            viewBox="0 0 14 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M9.28547 0.668245C9.13777 0.548406 8.93378 0.525612 8.76327 0.609893C8.59231 0.692252 8.48355 0.865181 8.48338 1.05495V2.36934C0.664259 2.69967 0.571292 10.861 0.571292 10.9451C0.570464 11.2034 0.768687 11.4189 1.02624 11.4396H1.0658C1.30784 11.4394 1.51417 11.264 1.55338 11.0252C1.56228 10.9757 2.39602 6.29572 8.48338 6.0544V7.79803C8.48349 7.99363 8.59888 8.17078 8.77775 8.24995C8.95662 8.32911 9.16534 8.2954 9.31019 8.16396L13.2662 4.56791C13.3734 4.47039 13.4325 4.33074 13.4277 4.18589C13.423 4.04103 13.3549 3.90556 13.2415 3.81528L9.28547 0.668245Z"
-                              fill="#0B213C"
-                              fill-opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
+              
                   </div>
                 </a>
               </div>
@@ -488,9 +381,8 @@
                       id="dob"
                     />
                   </div>
-
-                  <button class="btn btn__red modal_btn">
-                    Join {{ loan.owner_name }}
+                  <button class="btn btn__red modal_btn" [disabled]="isLoading">
+                    {{ isLoading ? "signing up..." : "Join loan.owner_name" }}
                   </button>
                 </form>
 

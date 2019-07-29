@@ -26,7 +26,7 @@ export class InvestmentsComponent implements OnInit {
 
   fetchInvestments(page){
     this.spinner.show()
-    this.rest.getInvestments(10, page).subscribe(data => {
+    this.rest.getAllResoureBy('investments', 10, page).subscribe(data => {
       this.investments = data.payload.contribution_types;
       this.total = data.payload.total;
       this.isLoading = false;

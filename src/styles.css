@@ -549,6 +549,7 @@ input::placeholder {
 /** DISCOVERY SINGLE PAGE STYLES **/
 .dcy-breadcrumb {
   display: flex;
+  position: relative;
 }
 .dcy-breadcrumb a {
   font-size: 14px;
@@ -556,13 +557,25 @@ input::placeholder {
   color: #637381;
   padding: 10px;
 }
-.dcy-breadcrumb a:first-child {
+
+/* .dcy-breadcrumb a:first-child {
   padding-left: 0;
+}
+.dcy-breadcrumb a:last-child:after{
+  display:none;
+}
+.dcy-breadcrumb a:after{
+  content: '/';
+  display: block;
+  position: absolute;
+  top:10px;
+  left:60px;
+  
 }
 .dcy .dcy-breadcrumb a::after {
   content: "";
   display: block;
-}
+} */
 
 .products-single-short {
   background-color: #fff;

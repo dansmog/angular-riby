@@ -8,7 +8,7 @@
             class="header-container d-flex justify-content-center align-items-center"
           >
             <div class="header-logo">
-              <a routerLink="/discovery">
+              <a routerLink="/corporatives">
                 <img
                   src="https://res.cloudinary.com/dotvhpvra/image/upload/v1563992181/riby-logo_cbrqdr.png"
                   alt="riby logo"
@@ -65,10 +65,13 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-between">
-          <div class="dcy-breadcrumb">
-            <a routerLink="/investments">Back to all investments</a>
-            <a routerLink="/investments">{{ investment.name }}</a>
-          </div>
+            <div class="dcy-breadcrumb">
+                <a [routerLink]="['/investments']">Back to Investments</a>
+    
+                <a
+                  ><span>{{ investment.name }}</span></a
+                >
+              </div>
         </div>
       </div>
       <div class="products-single">
@@ -86,7 +89,7 @@
                         <p>
                           {{ investment.description }}
                         </p>
-                        <span>Read more...</span>
+                        <!-- <span>Read more...</span> -->
                       </div>
                     </div>
                   </div>

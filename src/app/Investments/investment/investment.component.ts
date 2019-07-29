@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
-
+import { forkJoin, of, throwError } from 'rxjs';
 
 import { RestApiService } from '../../shared/rest-api.service';
 
@@ -17,6 +17,7 @@ export class InvestmentComponent implements OnInit {
 
   id: any = null;
   investment: any = {}
+  cooperative_loans: [];
   paramsSub: any;
   cooperative_id: string = '';
   isModalVisible: boolean = false;
@@ -42,16 +43,21 @@ export class InvestmentComponent implements OnInit {
   }
 
   fetchInvestmentById() {
-    this.spinner.show()
-    this.rest.getById(this.id, 'investments').subscribe((data) => {
-      console.log(data.payload);
-      this.investment = data.payload;
-      this.cooperative_id = data.payload.cooperative_identifier;
-      this.spinner.hide();
-      console.log(this.cooperative_id)
-    })
+    this.spinner.show();
+    forkJoin(
+      this.rest.getById(this.id, 'investments'),
+      this.rest.fetchCooperativeInvestments(this.id, 2),
+    )
+    .subscribe(([res1, res2]) => {
+     console.log(res1);
+     console.log(res2)
+     this.investment = res1.payload;
+     this.cooperative_loans = res2.payload.contribution_types
+     this.cooperative_id = res1.payload.cooperative_identifier;
+     this.spinner.hide();
+     this.isLoading = false;
+    });
   }
-
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
   }
@@ -66,7 +72,10 @@ export class InvestmentComponent implements OnInit {
   }
 
   onSubmit(){ 
-    const user = {...this.user, cooperative_id: this.cooperative_id, dob: "03-11-2010"}
+ 
+    const date = this.user.dob.split('-');  //["2010-12-30"] -- middle is month
+    const newDate = date[2] + '-' + date[1] + '-' + date[0];
+    const user = {...this.user, cooperative_id: this.cooperative_id, dob: newDate}
     this.user = user;
     const data = { "request": this.user}
     console.log(data)
@@ -80,8 +89,8 @@ export class InvestmentComponent implements OnInit {
         classes: {
           base: {
             "background-color": "#4DB280",
-            "padding": "7px",
-            "font-size": "10px",
+            "padding": "10px",
+            "font-size": "14px",
             "color": '#fff',
           },
         }
@@ -89,11 +98,6 @@ export class InvestmentComponent implements OnInit {
       $.notify("signup successful, please wait for approval from cooperative", {
         style: 'success_notify'
       });
-
-      // setTimeout(() => {
-      //   this.isModalVisible = false;
-      //   this.refresh();
-      // }, 000)
 
     })
   }

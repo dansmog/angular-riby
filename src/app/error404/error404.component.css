@@ -1,0 +1,30 @@
+img{
+  width:50%;
+  margin-top:100px;
+  margin-bottom:20px;
+}
+
+a{
+  display: block;
+  padding:15px;
+  width:320px;
+  margin:0 auto;
+  color:#fff;
+  border-radius: 5px;
+  background-color: #E22424;
+}
+@media(max-width:480px){
+  a{
+    width:100%;
+  }
+  h2{
+    font-size:24px;
+  }
+  p{
+    font-size: 14px;
+  }
+  a{
+    padding:12px;
+    font-size:12px;
+  }
+}

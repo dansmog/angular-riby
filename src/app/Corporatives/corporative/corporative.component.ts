@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { NgxSpinnerService } from "ngx-spinner";
+import { forkJoin, of, throwError } from 'rxjs';
 
 import { RestApiService } from '../../shared/rest-api.service';
 
@@ -17,12 +18,13 @@ export class CorporativeComponent implements OnInit {
 
   id = null;
   cooperative: {};
+  cooperative_loans: [];
   isModalVisible: boolean = false;
   cooperative_id = null;
   user = { dob: null };
   isLoading: boolean = true;
 
-  public constructor(private route: ActivatedRoute, private rest: RestApiService, private spinner: NgxSpinnerService, private cd: ChangeDetectorRef) {
+  public constructor( private route: ActivatedRoute, private rest: RestApiService, private spinner: NgxSpinnerService, private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -41,14 +43,19 @@ export class CorporativeComponent implements OnInit {
   }
 
   fetchCooperativeById() {
-    this.spinner.show()
-    this.rest.getById(this.id, 'cooporatives').subscribe(data => {
-      this.cooperative = data.payload;
-      console.log(this.cooperative)
-      this.cooperative_id = data.payload.id;
-      this.spinner.hide();
-      this.isLoading = false;
-    })
+    this.spinner.show();
+    forkJoin(
+      this.rest.getById(this.id, 'cooporatives'),
+      this.rest.fetchCooperativeLoans(this.id, 2),
+    )
+    .subscribe(([res1, res2]) => {
+      console.log(res1, res2)
+     this.cooperative = res1.payload;
+     this.cooperative_loans = res2.payload.loan_types
+     this.spinner.hide();
+     console.log(this.cooperative, this.cooperative_loans)
+     this.isLoading = false;
+    });
   }
 
   showModal() {
@@ -60,7 +67,9 @@ export class CorporativeComponent implements OnInit {
   }
 
   onSubmit() {
-    const user = { ...this.user, cooperative_id: this.cooperative_id, dob: "03-11-2010" }
+    const date = this.user.dob.split('-');  //["2010-12-30"] -- middle is month
+    const newDate = date[2] + '-' + date[1] + '-' + date[0];
+    const user = { ...this.user, cooperative_id: this.cooperative_id, dob: newDate }
     this.user = user;
     const data = { "request": this.user }
     console.log(data)
@@ -74,8 +83,8 @@ export class CorporativeComponent implements OnInit {
         classes: {
           base: {
             "background-color": "#4DB280",
-            "padding": "7px",
-            "font-size": "10px",
+            "padding": "10px",
+            "font-size": "12px",
             "color": '#fff',
           },
         }
