@@ -55,9 +55,11 @@ export class CorporativeComponent implements OnInit {
       .subscribe(([res1, res2, res3]) => {
         this.spinner.hide();
         this.cooperative = res1.payload;
+        console.log(this.cooperative);
         this.cooperative_loans = res2.payload.loan_types;
         this.cooperative_investments = res3.payload.contribution_types;
-        console.log(this.cooperative_loans)
+        console.log(this.cooperative_loans);
+        this.cooperative_id = res1.payload.id;
         this.isLoading = false;
       }, err => {
         this.spinner.hide();
