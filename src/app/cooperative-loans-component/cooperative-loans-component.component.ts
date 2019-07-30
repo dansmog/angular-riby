@@ -3,22 +3,21 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-
 import { RestApiService } from '../shared/rest-api.service';
 
 declare var $: any;
 
+
 @Component({
-  selector: 'app-cooperative-items',
-  templateUrl: './cooperative-items.component.html',
-  styleUrls: ['./cooperative-items.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-cooperative-loans-component',
+  templateUrl: './cooperative-loans-component.component.html',
+  styleUrls: ['./cooperative-loans-component.component.css']
 })
 
-export class CooperativeItemsComponent implements OnInit {
+export class CooperativeLoansComponentComponent implements OnInit {
 
   id: any = null;
-  cooperative_investments: [];
+  cooperative_loans: [];
   total = null;
   currentPage = 1;
   isLoading: boolean = true;
@@ -29,7 +28,7 @@ export class CooperativeItemsComponent implements OnInit {
 
   ngOnInit() {
     this.getSingleId();
-    this.fetchAllInvestments()
+    this.fetchAllLoans()
   }
 
   refresh() {
@@ -44,24 +43,24 @@ export class CooperativeItemsComponent implements OnInit {
   }
 
 
-  fetchAllInvestments() {
+  fetchAllLoans() {
     this.spinner.show()
-    return this.rest.fetchCooperativeInvestments(this.id, 10).subscribe(data => {
+    return this.rest.fetchCooperativeLoans(this.id, 10).subscribe(data => {
       console.log(data)
-      this.cooperative_investments = data.payload.contribution_types;
+      this.cooperative_loans = data.payload.loan_types;
       this.total = data.payload.total;
       this.spinner.hide()
       this.isLoading = false;
-      console.log(this.cooperative_investments)
+      console.log(this.cooperative_loans)
     })
   }
 
-  searchForInvestments(type: string) {
+  searchForLoans(type: string) {
     this.isSearchLoading = true;
     this.rest.filterResults(this.queryParams, type).pipe(debounceTime(100), distinctUntilChanged()).subscribe(data => {
       this.isSearchLoading = false;
       this.total = data.payload.total;
-      this.cooperative_investments = data.payload.contribution_types;
+      this.cooperative_loans = data.payload.contribution_types;
     }, err => {
       console.log(err)
     })
@@ -71,12 +70,12 @@ export class CooperativeItemsComponent implements OnInit {
     this.currentPage += 1
     if(this.currentPage >= this.total){
       this.currentPage = this.total
-      const result = this.rest.fetchCooperativeInvestments(this.id, 10);
+      const result = this.rest.fetchCooperativeLoans(this.id, 10);
       if(!result){
         this.currentPage -= 1;
       }
     }else{
-      return this.rest.fetchCooperativeInvestments(this.id, 10);
+      return this.rest.fetchCooperativeLoans(this.id, 10);
     }
   }
 
@@ -86,7 +85,7 @@ export class CooperativeItemsComponent implements OnInit {
      return;
     }else{
       this.currentPage -= 1
-      this.rest.fetchCooperativeInvestments(this.id, 10);
+      this.rest.fetchCooperativeLoans(this.id, 10);
     }
   }
 

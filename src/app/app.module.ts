@@ -27,7 +27,8 @@ import { EmptystateComponent } from './emptystate/emptystate.component';
 import { InlineSpinnerComponent } from './inline-spinner/inline-spinner.component';
 import { AuthService  } from './interceptors/auth.service'
 import { GlobalHttpInterceptorService } from './interceptors/global-http-interceptor-service.service';
-import { CooperativeItemsComponent } from './cooperative-items/cooperative-items.component'
+import { CooperativeItemsComponent } from './cooperative-items/cooperative-items.component';
+import { CooperativeLoansComponentComponent } from './cooperative-loans-component/cooperative-loans-component.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CooperativeItemsComponent } from './cooperative-items/cooperative-items
     Error404Component,
     EmptystateComponent,
     InlineSpinnerComponent,
-    CooperativeItemsComponent
+    CooperativeItemsComponent,
+    CooperativeLoansComponentComponent
   ],
   imports: [
     BrowserModule,

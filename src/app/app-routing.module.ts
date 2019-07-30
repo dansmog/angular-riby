@@ -13,6 +13,7 @@ import { InvestmentsComponent } from './Investments/investments/investments.comp
 import { InvestmentComponent } from './Investments/investment/investment.component';
 import { Error404Component } from './error404/error404.component'
 import { CooperativeItemsComponent } from "./cooperative-items/cooperative-items.component"
+import { CooperativeLoansComponentComponent } from './cooperative-loans-component/cooperative-loans-component.component';
 
 
 const routes: Routes = [
@@ -38,15 +39,14 @@ const routes: Routes = [
         path: ':id', component: CorporativeComponent,
       },
       {
-        path: ":id/loans", component: CooperativeItemsComponent
+        path: ":id/loans", component: CooperativeLoansComponentComponent
       },
       {
         path: ":id/investments", component: CooperativeItemsComponent
       },
       {
         path: ":id/loans/:loanId", component: LoanComponent
-      }
-      ,
+      },
       {
         path: ":id/investments/:investmentId", component: InvestmentComponent
       }
@@ -71,11 +71,7 @@ const routes: Routes = [
       },
       {
         path: ':id', component: InvestmentComponent,
-      },
-      {
-        path: ':cId/investments', component: CooperativeItemsComponent
       }
-
     ]
   },
   { path: '**', component: Error404Component }

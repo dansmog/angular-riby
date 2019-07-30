@@ -209,14 +209,14 @@
           <div class="other-products">
             <div class="row">
               <div class="col-sm-12 d-flex justify-content-between align-items-center">
-                <h6>Also by farmer</h6>
+                <h6>Also by Cooperative</h6>
 
                 <a *ngIf="cooperative_investments" [routerLink]="['../../corporatives', cooperative.id, 'investments']" class="view-more-link">view all investments</a>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-3" *ngFor="let investments of cooperative_investments">
-                <a [routerLink]="['']">
+                <a [routerLink]="['/investments', investments.id]">
                   <div class="dcy-list-item dcy-card">
                     <div class="savings-card">
                       <h6>{{investments.name}}</h6>

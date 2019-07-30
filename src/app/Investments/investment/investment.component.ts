@@ -42,6 +42,7 @@ export class InvestmentComponent implements OnInit {
   getSingleId() {
     this.route.params.subscribe(params => {
       this.id = params.id;
+      this.fetchInvestmentById()
     })
   }
 
@@ -63,10 +64,6 @@ export class InvestmentComponent implements OnInit {
        console.log(this.cooperative_loans)
      })
     });
-  }
-
-  ngOnDestroy() {
-    this.paramsSub.unsubscribe();
   }
 
   showModal() {

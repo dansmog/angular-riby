@@ -30,7 +30,8 @@ export class LoansComponent implements OnInit {
      this.spinner.show();
      this.rest.getAllResoureBy('loans', 10, page).subscribe(data => {
       this.loans = data.payload.loan_types;
-      this.total = data.payload.total;
+      const page = Math.ceil(data.payload.total / 12);
+      this.total = page;
       console.log(data)
       this.isLoading = false;
       this.spinner.hide();

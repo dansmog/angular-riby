@@ -66,8 +66,7 @@
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-between">
           <div class="dcy-breadcrumb">
-            <a [routerLink]="['/loans']">Back to Loans</a>
-
+            <a href="/loans">Back to Loans</a>
             <a
               ><span>{{ loan.name }}</span></a
             >
@@ -120,7 +119,7 @@
                               class="col-sm-12 col-md-12 col-lg-6"
                               *ngFor="let loans of cooperative_loans"
                             >
-                              <a [routerLink]="[]">
+                              <a [routerLink]="['/loans', loans.id]">
                                 <div class="dcy-list-item dcy-card">
                                   <div class="savings-card">
                                     <h6>{{ loans.name }}</h6>
@@ -219,14 +218,10 @@
               <div
                 class="col-sm-12 d-flex justify-content-between align-items-center"
               >
-                <h6>Also by farmer</h6>
+                <h6>Also by Cooperative</h6>
                 <a
                   *ngIf="cooperative_investments"
-                  [routerLink]="[
-                    '../../corporatives',
-                 
-                    'investments'
-                  ]"
+                  [routerLink]="['/corporatives', cooperative_id, 'loans']"
                   class="view-more-link"
                   >view all investments</a
                 >
@@ -237,7 +232,7 @@
                 class="col-sm-3"
                 *ngFor="let investments of cooperative_investments"
               >
-                <a [routerLink]="[]">
+                <a [routerLink]="['/investments', investments.id]">
                   <div class="dcy-list-item dcy-card">
                     <div class="savings-card">
                       <h6>{{ investments.name }}</h6>

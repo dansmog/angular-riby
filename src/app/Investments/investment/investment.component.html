@@ -15,47 +15,6 @@
                 />
               </a>
             </div>
-            <!-- <div class="header-menu d-flex">
-                  <a routerLink="/discovery" class="active">Discover</a>
-                  <a routerLink="/bookmarks">Bookmarks</a>
-                  <a routerLink="/portfolio">Portfolio</a>
-                </div>
-                <div class="header-user">
-                  <div class="header-user__notification">
-                    <div class="is-notified"></div>
-                    <svg
-                      width="16"
-                      height="15"
-                      viewBox="0 0 16 15"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M15.0847 14.457C14.2263 12.7508 13.7779 10.8679 13.7752 8.958V8.382C13.796 7.26473 13.5425 6.15941 13.0371 5.16282C12.5316 4.16623 11.7895 3.30876 10.8757 2.6655C10.3435 2.32242 9.74853 2.0884 9.12522 1.977V1.125C9.12522 0.826631 9.00669 0.540483 8.79571 0.329505C8.58473 0.118526 8.29858 0 8.00022 0C7.70185 0 7.4157 0.118526 7.20472 0.329505C6.99374 0.540483 6.87522 0.826631 6.87522 1.125V1.98675C6.09728 2.13408 5.36484 2.46215 4.73696 2.9445C3.93662 3.60385 3.29518 4.43512 2.86032 5.3765C2.42547 6.31788 2.20839 7.34517 2.22521 8.382V8.958C2.22248 10.8679 1.77409 12.7508 0.915714 14.457C0.887094 14.5141 0.873539 14.5776 0.876336 14.6414C0.879133 14.7052 0.898189 14.7673 0.931696 14.8217C0.965203 14.8761 1.01205 14.921 1.06779 14.9522C1.12354 14.9834 1.18633 14.9999 1.25021 15H14.7502C14.8142 14.9999 14.8771 14.9835 14.9329 14.9522C14.9888 14.921 15.0357 14.876 15.0692 14.8215C15.1028 14.767 15.1218 14.7048 15.1245 14.6409C15.1272 14.577 15.1135 14.5134 15.0847 14.4562V14.457Z"
-                        fill="#0B213C"
-                      />
-                    </svg>
-                  </div>
-                  <div class="header-user__info d-flex align-items-center">
-                    <img
-                      src="https://cdn.dribbble.com/users/904266/avatars/normal/8170de2d907a65ca0dc0a0ca47d4b032.jpg?1509400488"
-                      class="header-user__profile-photo"
-                      alt="profile-photo"
-                    />
-                    <p>
-                      Ifesinachi
-                    </p>
-                    <svg
-                      width="8"
-                      height="4"
-                      viewBox="0 0 8 4"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M0 0L4 4L8 0H0Z" fill="#0B213C" />
-                    </svg>
-                  </div>
-                </div> -->
           </div>
         </div>
       </div>
@@ -66,7 +25,7 @@
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-between">
           <div class="dcy-breadcrumb">
-            <a [routerLink]="['/investments']">Back to Investments</a>
+            <a href="/investments">Back to Investments</a>
 
             <a
               ><span>{{ investment.name }}</span></a
@@ -120,7 +79,7 @@
                               class="col-sm-12 col-md-12 col-lg-6"
                               *ngFor="let loans of cooperative_loans"
                             >
-                              <a [routerLink]="[]">
+                              <a [routerLink]="['/loans', loans.id]">
                                 <div class="dcy-list-item dcy-card">
                                   <div class="savings-card">
                                     <h6>{{ loans.name }}</h6>
@@ -212,7 +171,7 @@
               <div
                 class="col-sm-12 d-flex justify-content-between align-items-center"
               >
-                <h6>Also by farmer</h6>
+                <h6>Also by Cooperative</h6>
                 <a
                   *ngIf="cooperative_investments"
                   [routerLink]="['/cooperative', cooperative_id, 'investments']"
@@ -226,7 +185,7 @@
                 class="col-sm-12 col-md-6 col-lg-3"
                 *ngFor="let investments of cooperative_investments"
               >
-                <a [routerLink]="[]">
+                <a [routerLink]="['/investments', investments.id]">
                   <div class="dcy-list-item dcy-card">
                     <div class="savings-card">
                       <h6>{{ investments.name }}</h6>

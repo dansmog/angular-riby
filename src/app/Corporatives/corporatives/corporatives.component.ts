@@ -41,13 +41,14 @@ export class CorporativesComponent implements OnInit {
 
   fetchCooporatives(page) {
     this.spinner.show();
-
     this.rest.getAllResoureBy('cooperatives', 10, page).subscribe(data => {
       this.spinner.hide();
       this.isLoading = false;
       console.log(data.payload.cooperatives)
       this.corporatives = data.payload.cooperatives;
-      this.total = data.payload.total;
+      const page = Math.ceil(data.payload.total / 12);
+      this.total = page ;
+      console.log(this.total)
     }, err => {
       this.spinner.hide();
       console.log(err)

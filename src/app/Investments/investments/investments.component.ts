@@ -28,7 +28,8 @@ export class InvestmentsComponent implements OnInit {
     this.spinner.show()
    return this.rest.getAllResoureBy('investments', 10, page).subscribe(data => {
       this.investments = data.payload.contribution_types;
-      this.total = data.payload.total;
+      const page = Math.ceil(data.payload.total / 12);
+      this.total = page;
       this.isLoading = false;
       this.spinner.hide()
       console.log(this.investments)
@@ -45,6 +46,7 @@ export class InvestmentsComponent implements OnInit {
       this.isSearchLoading = false;
       this.total = data.payload.total;
       this.investments = data.payload.contribution_types;
+      console.log(this.investments)
     }, err => {
       console.log(err)
     })

@@ -85,7 +85,7 @@
         </div>
         <div class="discovery-content">
           <div class="row">
-            <div class="col-sm-3" *ngFor="let loan of loans">
+            <div class="col-sm-3" *ngFor="let loan of cooperative_loans">
                 <a [routerLink]="['/loans', loan.id]">
                   <div class="dcy-list-item dcy-card">
                     <div class="savings-card">
@@ -126,7 +126,42 @@
                         </div>
                       </div>
                     </div>
-                    
+                    <div class="dcy-card-footer">
+                      <div class="card-footer__items">
+                        <div class="bookmark card-footer__items-circle">
+                          <svg
+                            width="10"
+                            height="12"
+                            viewBox="0 0 10 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M1.72554 0.107178H8.27316C8.9934 0.107178 9.58268 0.696464 9.58268 1.4167V11.8929L4.99935 9.92861L0.416016 11.8929L0.422563 1.4167C0.422563 0.696464 1.0053 0.107178 1.72554 0.107178ZM4.99927 8.50121L8.27308 9.92859V1.41668H1.72546V9.92859L4.99927 8.50121Z"
+                              fill="#0B213C"
+                              fill-opacity="0.5"
+                            />
+                          </svg>
+                        </div>
+                        <div class="share card-footer__items-circle">
+                          <svg
+                            width="14"
+                            height="12"
+                            viewBox="0 0 14 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M9.28547 0.668245C9.13777 0.548406 8.93378 0.525612 8.76327 0.609893C8.59231 0.692252 8.48355 0.865181 8.48338 1.05495V2.36934C0.664259 2.69967 0.571292 10.861 0.571292 10.9451C0.570464 11.2034 0.768687 11.4189 1.02624 11.4396H1.0658C1.30784 11.4394 1.51417 11.264 1.55338 11.0252C1.56228 10.9757 2.39602 6.29572 8.48338 6.0544V7.79803C8.48349 7.99363 8.59888 8.17078 8.77775 8.24995C8.95662 8.32911 9.16534 8.2954 9.31019 8.16396L13.2662 4.56791C13.3734 4.47039 13.4325 4.33074 13.4277 4.18589C13.423 4.04103 13.3549 3.90556 13.2415 3.81528L9.28547 0.668245Z"
+                              fill="#0B213C"
+                              fill-opacity="0.5"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </a>
               </div>
