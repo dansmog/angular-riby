@@ -59,6 +59,7 @@ export class CorporativeComponent implements OnInit {
         this.cooperative_loans = res2.payload.loan_types;
         this.cooperative_investments = res3.payload.contribution_types;
         console.log(this.cooperative_loans);
+        console.log(this.cooperative_investments);
         this.cooperative_id = res1.payload.id;
         this.isLoading = false;
       }, err => {
@@ -98,7 +99,9 @@ export class CorporativeComponent implements OnInit {
           classes: {
             base: {
               "background-color": "#4DB280",
-              "padding": "10px",
+              "padding": "30px",
+              "height": "50",
+              "width": "100%",
               "font-size": "14px",
               "color": '#fff',
             },
@@ -119,7 +122,9 @@ export class CorporativeComponent implements OnInit {
           classes: {
             base: {
               "background-color": "#e22424",
-              "padding": "10px",
+              "padding": "30px",
+              "height": "50",
+              "width": "100%",
               "font-size": "14px",
               "color": '#fff',
             },

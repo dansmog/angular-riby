@@ -58,35 +58,17 @@
           <div class="col-sm-3" *ngFor="let corporative of corporatives">
             <a [routerLink]="['/corporatives', corporative.id]">
               <div class="dcy-list-item dcy-card">
-                <div class="dcy-list-item__header">
-                  <img
-                    src="https://res.cloudinary.com/dotvhpvra/image/upload/v1563992181/riby-logo_cbrqdr.png"
-                    alt=""
-                    class="img-responsive"
-                  />
-                  <div class="dcy-list-item__overlay">
-                    <div class="name-title">
-                      <span class="name-logo">CC</span>
-                    </div>
-                  </div>
-                </div>
                 <div class="dcy-list-item__body">
                   <div class="title">
-                    <h6>{{ corporative.name }}</h6>
+                    <h6><span style="font-size:14px; font-weight: bold">Name:</span> {{ corporative.name }}</h6>
+                    <span style="font-size:11px; font-weight: bold">Email: {{corporative.email}}</span>
                   </div>
                   <div class="corporative-info">
                     <div class="corporative-info__children">
                       <h6>
-                        <!-- <span>{{ corporative.description }}</span> -->
+                        <span>{{ corporative.description }}</span>
                       </h6>
-                      <h6>
-                        <span>{{ corporative.duration }}</span> Saving duration
-                        before loan
-                        <h6>
-                          <span>{{ corporative.repayment }}</span> Loan
-                          repayment period eligibility
-                        </h6>
-                      </h6>
+                      <span>Phone Number: {{corporative.phone_number}}</span>
                     </div>
                   </div>
                 </div>

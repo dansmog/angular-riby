@@ -107,7 +107,9 @@ export class LoanComponent implements OnInit {
           classes: {
             base: {
               "background-color": "#4DB280",
-              "padding": "10px",
+              "padding": "30px",
+              "height": "50",
+              "width": "100%",
               "font-size": "14px",
               "color": '#fff',
             },
@@ -128,7 +130,9 @@ export class LoanComponent implements OnInit {
           classes: {
             base: {
               "background-color": "#e22424",
-              "padding": "10px",
+              "padding": "30px",
+              "height": "50",
+              "width": "100%",
               "font-size": "14px",
               "color": '#fff',
             },
